@@ -2,13 +2,18 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-// Project 타입 정의 (필요에 따라 확장 가능)
+// Project 타입 정의
 interface ProjectProps {
   project: {
     id: number;
     title: string;
-    category: string;
+    description: string;
+    role: string;
+    stack: string[];
     color: string;
+    period?: string;
+    link?: string;
+    demo?: string;
   };
 }
 
@@ -91,13 +96,23 @@ const ProjectCard = ({ project }: ProjectProps) => {
         style={{ transformStyle: 'preserve-3d' }} // 3D 효과 필수
       >
         {/* 카드 내부 텍스트 (살짝 튀어나오게 보이도록 z축 이동) */}
-        <div className="transform translate-z-20 flex flex-col items-center">
-          <h3 className="text-5xl md:text-8xl font-black text-white mb-6 uppercase tracking-tighter">
+        <div className="transform translate-z-20 flex flex-col items-center px-8">
+          <h3 className="text-5xl md:text-8xl font-black text-white mb-4 uppercase tracking-tighter">
             {project.title}
           </h3>
-          <span className="text-xl text-white/90 border border-white/50 px-6 py-2 rounded-full backdrop-blur-sm">
-            {project.category}
-          </span>
+          <p className="text-xl text-white/90 mb-4 text-center">
+            {project.description}
+          </p>
+          
+          {/* 역할 및 스택 표시 */}
+          <div className="mt-4 flex flex-wrap gap-2 justify-center max-w-2xl">
+            {project.stack.map(tech => (
+              <span key={tech} className="px-3 py-1 bg-black/20 rounded-full text-sm text-white/80 border border-white/10">
+                {tech}
+              </span>
+            ))}
+          </div>
+          <p className="mt-4 text-white/60 text-sm">{project.role}</p>
         </div>
       </div>
 

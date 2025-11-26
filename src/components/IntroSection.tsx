@@ -2,6 +2,7 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { PROFILE } from "../constants/data";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -69,7 +70,7 @@ const IntroSection = () => {
           >
             CREATIVE<br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
-              DEVELOPER
+              FRONTEND DEV
             </span>
           </h1>
         </div>
@@ -77,11 +78,11 @@ const IntroSection = () => {
         {/* [하단] 푸터 정보 */}
         <div className="flex justify-between items-end font-galmuri text-sm md:text-base text-zinc-400">
           <div ref={addToRefs}>
-            <p className="animate-bounce">↓ SCROLL TO EXPLORE</p>
+            <p className="text-white font-bold mb-1">{PROFILE.name}</p>
+            <p>{PROFILE.role}</p>
           </div>
-          <div ref={addToRefs} className="text-right hidden md:block">
-            <p>DESIGN & CODE</p>
-            <p>© ALL RIGHTS RESERVED</p>
+          <div ref={addToRefs} className="text-right">
+            <p className="animate-bounce">↓ SCROLL TO EXPLORE</p>
           </div>
         </div>
       </div>

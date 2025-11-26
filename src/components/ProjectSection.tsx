@@ -2,23 +2,17 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import ProjectCard from "./ProjectCard"; // 컴포넌트 임포트
+import ProjectCard from "./ProjectCard";
+import { PROJECTS } from "../constants/data";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const projects = [
-  { id: 1, title: "Codiagit", category: "Web Application", color: "bg-indigo-600" },
-  { id: 2, title: "FDM Box", category: "Mobile App", color: "bg-orange-500" },
-  { id: 3, title: "The Maze", category: "Interactive Game", color: "bg-emerald-600" },
-  { id: 4, title: "Playground", category: "Toy Project", color: "bg-rose-500" },
-];
 
 const ProjectSection = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const triggerRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const totalPanels = projects.length;
+    const totalPanels = PROJECTS.length;
     
     gsap.to(sectionRef.current, {
       xPercent: -100 * (totalPanels - 1), 
@@ -46,10 +40,10 @@ const ProjectSection = () => {
         {/* 가로 스크롤 컨테이너 */}
         <div 
           ref={sectionRef} 
-          className="flex h-full w-[400%] flex-row"
+          className="flex h-full flex-row"
+          style={{ width: `${PROJECTS.length * 100}%` }}
         >
-          {projects.map((project) => (
-            // 분리한 컴포넌트 사용
+          {PROJECTS.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
