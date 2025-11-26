@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 
 // Components
+import Header from './components/Header';
 import PageTransition from './components/PageTransition';
 
 // 라우트 변경을 감지하고 애니메이션을 적용하는 래퍼 컴포넌트
@@ -58,6 +59,9 @@ function App() {
 
   return (
     <Router>
+        {/* 헤더를 라우터 내부에, Routes 외부에 배치 */}
+        <Header />
+        
         <AnimatedRoutes />
     </Router>
   );

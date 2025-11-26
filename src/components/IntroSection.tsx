@@ -42,7 +42,7 @@ const IntroSection = () => {
         {/* 타이틀 텍스트 */}
         <h1 
           ref={titleRef} 
-          className="text-6xl md:text-9xl font-galmuri font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 text-center leading-tight"
+          className="text-6xl md:text-9xl font-pretendard font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 text-center leading-tight"
         >
           WEB FRONTEND<br />
           DEVELOPER

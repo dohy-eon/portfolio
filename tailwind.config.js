@@ -7,7 +7,10 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        // font-sans를 기본으로 덮어쓰거나 새로운 유틸리티 추가
+        // 메인 화면 기본 폰트 (PretendardVariable)
+        sans: ['PretendardVariable', 'system-ui', 'sans-serif'],
+        pretendard: ['PretendardVariable', 'system-ui', 'sans-serif'],
+        // 헤더 네비게이션 전용 폰트 (Galmuri11)
         galmuri: ['Galmuri11', 'sans-serif'],
       },
       colors: {

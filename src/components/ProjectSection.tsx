@@ -38,7 +38,7 @@ const ProjectSection = () => {
         
         {/* 섹션 고정 타이틀 */}
         <div className="absolute top-12 left-12 z-10 mix-blend-difference">
-          <h2 className="text-5xl font-galmuri font-bold text-white">
+          <h2 className="text-5xl font-pretendard font-bold text-white">
             SELECTED<br />WORKS
           </h2>
         </div>

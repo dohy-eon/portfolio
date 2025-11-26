@@ -10,6 +10,14 @@
   font-display: swap; /* 폰트 로딩 중에도 텍스트 표시 */
 }
 
+@font-face {
+  font-family: 'PretendardVariable';
+  src: url('./assets/fonts/PretendardVariable.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @layer base {
   body {
     /* 전체 배경색과 텍스트 색상 기본 지정 */

@@ -66,7 +66,7 @@ const PageTransition = ({ children }: Props) => {
         {/* 로딩 중에 잠깐 보여줄 텍스트 (선택사항) */}
         <motion.div 
           variants={textContainer} 
-          className="absolute z-50 flex items-center text-white text-4xl font-bold font-galmuri"
+          className="absolute z-50 flex items-center text-white text-4xl font-bold font-pretendard"
         >
           Loading...
         </motion.div>
