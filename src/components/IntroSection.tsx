@@ -3,54 +3,89 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
-// 플러그인 등록
 gsap.registerPlugin(ScrollTrigger);
 
 const IntroSection = () => {
-  // TypeScript: Ref에 HTMLDivElement 타입을 명시하고 초기값 null 설정
   const containerRef = useRef<HTMLDivElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const triggerRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLHeadingElement>(null);
+  const subTextRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useGSAP(() => {
-    // containerRef.current가 존재할 때만 실행되므로 안전함
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: triggerRef.current,
-        start: "top top",
-        end: "+=2000", // 스크롤 길이
-        scrub: 1,      // 되감기 효과
-        pin: true,     // 섹션 고정
-        // markers: true, // 개발 중 가이드라인 보기 (배포 시 제거)
-      },
-    });
+    const tl = gsap.timeline();
 
-    tl.fromTo(titleRef.current, 
-      { scale: 0.5, opacity: 0, y: 100 },
-      { scale: 1.5, opacity: 1, y: 0, duration: 2 }
+    // 1. 배경 그리드와 코너 텍스트들이 서서히 나타남
+    tl.fromTo(subTextRefs.current, 
+      { opacity: 0, y: 20 },
+      { opacity: 1, y: 0, duration: 1, stagger: 0.1, ease: "power3.out" }
     );
-    
-  }, { scope: containerRef }); // scope를 지정하면 이 컴포넌트 내부에서만 선택자가 작동하여 안전함
+
+    // 2. 중앙 메인 텍스트가 웅장하게 올라옴
+    tl.fromTo(textRef.current,
+      { y: 100, opacity: 0, scale: 0.9 },
+      { y: 0, opacity: 1, scale: 1, duration: 1.5, ease: "power4.out" },
+      "-=0.5"
+    );
+
+    // 3. 스크롤 트리거 (기존 확대 효과 유지)
+    gsap.to(textRef.current, {
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top top",
+        end: "+=1000",
+        scrub: 1,
+      },
+      scale: 1.5, // 스크롤 시 글자가 더 커지면서 다가오는 느낌
+      y: -50,
+      opacity: 0.5, // 점점 흐려지며 다음 섹션으로 자연스럽게 연결
+    });
+  }, { scope: containerRef });
+
+  // 유틸리티: Refs 배열에 추가하는 함수
+  const addToRefs = (el: HTMLDivElement | null) => {
+    if (el && !subTextRefs.current.includes(el)) {
+      subTextRefs.current.push(el);
+    }
+  };
 
   return (
-    // 전체를 감싸는 트리거 영역
-    <section ref={triggerRef} className="relative h-screen w-full overflow-hidden bg-black">
+    <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-zinc-900 text-white">
       
-      {/* 애니메이션이 일어날 내부 컨테이너 */}
-      <div ref={containerRef} className="relative h-full w-full flex items-center justify-center">
-        
-        {/* 타이틀 텍스트 */}
-        <h1 
-          ref={titleRef} 
-          className="text-6xl md:text-9xl font-pretendard font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 text-center leading-tight"
-        >
-          WEB FRONTEND<br />
-          DEVELOPER
-        </h1>
+      {/* 배경: 은은한 모눈종이 패턴 (CSS로 구현) */}
+      <div className="absolute inset-0 z-0 opacity-20 pointer-events-none" 
+           style={{ 
+             backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)', 
+             backgroundSize: '40px 40px' 
+           }} 
+      />
 
-        {/* 배경에 깔릴 장식 요소들 (예시) */}
-        <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-blue-500 rounded-full blur-3xl opacity-20 animate-pulse" />
+      {/* 레이아웃: flex-col로 상/중/하 분리 */}
+      <div className="relative z-10 h-full w-full flex flex-col justify-between p-6 md:p-12">
+        
+        {/* [중앙] 메인 타이틀 */}
+        <div className="flex-1 flex items-center justify-center">
+          <h1 
+            ref={textRef} 
+            className="font-galmuri font-black text-[10vw] leading-[0.9] text-center mix-blend-difference whitespace-nowrap"
+          >
+            CREATIVE<br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">
+              DEVELOPER
+            </span>
+          </h1>
+        </div>
+
+        {/* [하단] 푸터 정보 */}
+        <div className="flex justify-between items-end font-galmuri text-sm md:text-base text-zinc-400">
+          <div ref={addToRefs}>
+            <p className="animate-bounce">↓ SCROLL TO EXPLORE</p>
+          </div>
+          <div ref={addToRefs} className="text-right hidden md:block">
+            <p>DESIGN & CODE</p>
+            <p>© ALL RIGHTS RESERVED</p>
+          </div>
+        </div>
       </div>
+      
     </section>
   );
 };

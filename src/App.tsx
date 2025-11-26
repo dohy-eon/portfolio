@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import Contact from './pages/Contact';
 
 // Components
+import Cursor from './components/Cursor';
 import Header from './components/Header';
 import PageTransition from './components/PageTransition';
 
@@ -59,6 +60,9 @@ function App() {
 
   return (
     <Router>
+        {/* 커서는 가장 위에 배치 */}
+        <Cursor />
+        
         {/* 헤더를 라우터 내부에, Routes 외부에 배치 */}
         <Header />
         

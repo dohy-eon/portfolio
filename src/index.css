@@ -24,6 +24,18 @@
     @apply bg-zinc-900 text-white font-sans antialiased;
     /* 가로 스크롤 방지 */
     @apply overflow-x-hidden;
+    /* 데스크톱에서만 기본 커서 숨김 */
+    cursor: none;
+  }
+
+  /* 모바일/태블릿 등 터치 장치에서는 커서 보이게 복구 & 커스텀 커서 숨김 */
+  @media (hover: none) and (pointer: coarse) {
+    body {
+      cursor: auto;
+    }
+    .custom-cursor {
+      display: none !important;
+    }
   }
 }
 
