@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 폰트 파일이 있는 경우에만 로드 */
+@font-face {
+  font-family: 'Galmuri11';
+  src: url('./assets/fonts/Galmuri11.woff2') format('woff2');
+  font-weight: normal;
+  font-display: swap; /* 폰트 로딩 중에도 텍스트 표시 */
+}
+
+@layer base {
+  body {
+    /* 전체 배경색과 텍스트 색상 기본 지정 */
+    @apply bg-zinc-900 text-white font-sans antialiased;
+    /* 가로 스크롤 방지 */
+    @apply overflow-x-hidden;
+  }
+}
+
+@layer utilities {
+  /* 3D 효과를 위한 유틸리티 클래스 */
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+  
+  .translate-z-20 {
+    transform: translateZ(20px);
+  }
+}
