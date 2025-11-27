@@ -46,6 +46,10 @@ function App() {
   useEffect(() => {
     // Lenis 스크롤 설정 (페이지 이동 시 스크롤 최상단 이동 처리는 라우터가 하거나 Lenis가 처리)
     const lenis = new Lenis();
+    
+    // 전역에서 접근 가능하도록 window 객체에 저장
+    (window as any).lenis = lenis;
+    
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -55,6 +59,7 @@ function App() {
 
     return () => {
       lenis.destroy();
+      delete (window as any).lenis;
     };
   }, []);
 

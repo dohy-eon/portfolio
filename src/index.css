@@ -37,6 +37,15 @@
       display: none !important;
     }
   }
+
+  /* 모달이 열렸을 때 커스텀 커서 숨기기 */
+  body.modal-open {
+    cursor: auto !important;
+  }
+  
+  body.modal-open .custom-cursor {
+    display: none !important;
+  }
 }
 
 @layer utilities {

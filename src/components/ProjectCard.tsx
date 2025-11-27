@@ -1,6 +1,8 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import ProjectModal from "./ProjectModal";
+import { ProjectDetail } from "../constants/data";
 
 // Project 타입 정의
 interface ProjectProps {
@@ -14,6 +16,7 @@ interface ProjectProps {
     period?: string;
     link?: string;
     demo?: string;
+    details?: ProjectDetail;
   };
 }
 
@@ -21,6 +24,9 @@ const ProjectCard = ({ project }: ProjectProps) => {
   const cardRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const cursorRef = useRef<HTMLDivElement>(null);
+  
+  // 모달 상태 관리
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useGSAP(() => {
     // 마우스가 카드 위에 있을 때만 나타나는 커서 버튼 (초기엔 숨김)
@@ -81,14 +87,21 @@ const ProjectCard = ({ project }: ProjectProps) => {
     gsap.to(cursorRef.current, { scale: 0, autoAlpha: 0, duration: 0.3 });
   };
 
+  // 카드 클릭 핸들러
+  const handleCardClick = () => {
+    setIsModalOpen(true);
+  };
+
   return (
-    <div 
-      ref={cardRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-      className="relative h-full w-screen flex items-center justify-center p-10 md:p-20 flex-shrink-0"
-    >
+    <>
+      <div 
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={handleCardClick}
+        className="relative h-full w-screen flex items-center justify-center p-10 md:p-20 flex-shrink-0 cursor-none"
+      >
       {/* 실제 움직이는 3D 카드 내용물 */}
       <div 
         ref={contentRef}
@@ -124,6 +137,14 @@ const ProjectCard = ({ project }: ProjectProps) => {
         VIEW
       </div>
     </div>
+
+    {/* 모달 컴포넌트 렌더링 */}
+    <ProjectModal 
+      isOpen={isModalOpen} 
+      onClose={() => setIsModalOpen(false)} 
+      project={project}
+    />
+    </>
   );
 };
 
