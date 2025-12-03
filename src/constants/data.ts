@@ -33,7 +33,9 @@ export const HISTORY = [
   {
     category: "Awards",
     items: [
-      { year: "2024.05", title: "동양미래대학교 솜커톤 대상 수상" },
+      { year: "2025.11", title: "스마트 SW 개발 경진대회 우수상"},
+      { year: "2025.02", title: "동양미래대학교 생성형 AI 해커톤 장려상" },
+      { year: "2024.05", title: "동양미래대학교 솜커톤 대상" },
       { year: "2023.12", title: "AI PD Lab 부트캠프 우수상" },
       { year: "2022.05", title: "TOEIC 910점" },
     ]
