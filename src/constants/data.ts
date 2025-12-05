@@ -25,7 +25,7 @@ export const HISTORY = [
   {
     category: "Education",
     items: [
-      { year: "2023.03 ~", title: "동양미래대학교 컴퓨터소프트웨어공학과 재학" },
+      { year: "2023.03", title: "동양미래대학교 컴퓨터소프트웨어공학과 전문학사" },
       { year: "2022.05", title: "고등학교 졸업학력 검정고시" },
       { year: "2021.06", title: "DPS International Ghana (IGCSE 과정 이수)" },
     ]
@@ -33,8 +33,9 @@ export const HISTORY = [
   {
     category: "Awards",
     items: [
+      { year: "2025.12", title: "동양미래대학교 생성형 AI 경진대회 장려상"},
       { year: "2025.11", title: "동양미래대학교 스마트 SW 개발 경진대회 우수상"},
-      { year: "2025.02", title: "동양미래대학교 생성형 AI 해커톤 장려상" },
+      { year: "2025.02", title: "동양미래대학교 생성형 AI를 활용한 문제해결 해커톤 장려상" },
       { year: "2024.05", title: "동양미래대학교 솜커톤 대상" },
       { year: "2023.12", title: "동양미래대학교 AI PD Lab 부트캠프 우수상" },
       { year: "2022.05", title: "TOEIC 910점" },
