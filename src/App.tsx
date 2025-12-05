@@ -15,6 +15,7 @@ import ProjectDetail from './pages/ProjectDetail';
 import Cursor from './components/Cursor';
 import Header from './components/Header';
 import PageTransition from './components/PageTransition';
+import ScrollToTopBottom from './components/ScrollToTopBottom';
 
 // 라우트 변경을 감지하고 애니메이션을 적용하는 래퍼 컴포넌트
 const AnimatedRoutes = () => {
@@ -92,6 +93,9 @@ function App() {
           <Header />
           
           <AnimatedRoutes />
+          
+          {/* 플로팅 스크롤 버튼 */}
+          <ScrollToTopBottom />
       </Router>
     </HelmetProvider>
   );
