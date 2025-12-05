@@ -1,18 +1,13 @@
-import { Link } from 'react-router-dom';
 import IntroSection from '../components/IntroSection';
 import ProjectSection from '../components/ProjectSection';
+import Footer from '../components/Footer';
 
 const Home = () => {
   return (
     <main>
       <IntroSection />
       <ProjectSection />
-      {/* 푸터 대신 다음 페이지로 가는 링크 예시 */}
-      <div className="h-[50vh] flex items-center justify-center bg-black text-white">
-        <Link to="/contact" className="text-4xl font-pretendard hover:text-yellow-400 transition-colors">
-          CONTACT ME &rarr;
-        </Link>
-      </div>
+      <Footer />
     </main>
   );
 };
