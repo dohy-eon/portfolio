@@ -78,7 +78,7 @@ const Cursor = () => {
     if (isHovering) {
       // 호버 시: 점은 숨기고, 원은 커지면서 배경색이 바뀜 (mix-blend-difference 효과 극대화)
       gsap.to(cursorRef.current, { scale: 0, duration: 0.2 });
-      gsap.to(followerRef.current, { scale: 3, backgroundColor: "white", mixBlendMode: "difference", duration: 0.2 });
+      gsap.to(followerRef.current, { scale: 1.5, backgroundColor: "white", mixBlendMode: "difference", duration: 0.2 });
     } else {
       // 평소: 점 보이고, 원은 테두리만
       gsap.to(cursorRef.current, { scale: 1, duration: 0.2 });

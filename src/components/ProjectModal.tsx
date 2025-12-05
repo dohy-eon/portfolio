@@ -1,14 +1,24 @@
 import { createPortal } from "react-dom";
 import { useEffect } from "react";
 import { ProjectDetail } from "../constants/data";
+import bookBgImage from "../assets/book-bg.png";
+import mixmixBgImage from "../assets/mixmix.png";
+import dasomBgImage from "../assets/dasom-bg.png";
+import reactKitCliBgImage from "../assets/react-kit-cli.png";
+import minuBgImage from "../assets/minu.png";
+import moonrabbitBgImage from "../assets/moonrabbit.png";
+import muuviBgImage from "../assets/muuvi.png";
 
 interface ProjectModalProps {
   isOpen: boolean;
   onClose: () => void;
   project: {
+    id?: number;
     title: string;
     description: string;
+    role?: string;
     stack: string[];
+    color?: string;
     link?: string;
     demo?: string;
     details?: ProjectDetail;
@@ -105,23 +115,58 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
              }} 
         />
         
-        {/* 상단 헤더 */}
-        <div className="relative z-10 bg-zinc-900/95 backdrop-blur-sm border-b border-zinc-800 p-6 md:p-8 flex-shrink-0">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl md:text-3xl font-galmuri font-bold text-white">{project.title}</h2>
-            <button 
-              onClick={onClose}
-              className="text-zinc-400 hover:text-white transition-colors text-3xl font-light leading-none"
-              aria-label="Close modal"
-            >
-              &times;
-            </button>
+        {/* 상단 헤더 - 배경 이미지 영역 */}
+        <div className="relative z-10 border-b border-zinc-800 flex-shrink-0 overflow-hidden">
+          {/* 배경 이미지 */}
+          {project.id === 7 ? (
+            // 책이랑 프로젝트
+            <>
+              <div 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+                style={{ backgroundImage: `url(${bookBgImage})` }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/95 to-zinc-900" />
+            </>
+          ) : project.id === 5 ? (
+            // MixMix 프로젝트
+            <>
+              <div 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+                style={{ backgroundImage: `url(${mixmixBgImage})` }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/95 to-zinc-900" />
+            </>
+          ) : project.id === 3 ? (
+            // Muuvi 프로젝트
+            <>
+              <div 
+                className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+                style={{ backgroundImage: `url(${muuviBgImage})` }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/95 to-zinc-900" />
+            </>
+          ) : (
+            <div className="absolute inset-0 bg-zinc-900/95 backdrop-blur-sm" />
+          )}
+          
+          {/* 헤더 내용 */}
+          <div className="relative z-10 p-6 md:p-8">
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl md:text-3xl font-galmuri font-bold text-white">{project.title}</h2>
+              <button 
+                onClick={onClose}
+                className="text-zinc-400 hover:text-white transition-colors text-3xl font-light leading-none"
+                aria-label="Close modal"
+              >
+                &times;
+              </button>
+            </div>
           </div>
         </div>
 
         {/* 본문 - 스크롤 가능 영역 */}
         <div 
-          className="relative z-10 p-6 md:p-8 lg:p-10 overflow-y-auto flex-1 min-h-0"
+          className="relative z-10 overflow-y-auto flex-1 min-h-0"
           onWheel={(e) => {
             // 모달 내부 스크롤 이벤트가 외부로 전파되지 않도록
             e.stopPropagation();
@@ -131,10 +176,90 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
             e.stopPropagation();
           }}
         >
+          {/* 배경 이미지/색상 영역 */}
+          <div className="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden">
+            {project.id === 7 ? (
+              // 책이랑 프로젝트 - 배경 이미지
+              <>
+                <div 
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url(${bookBgImage})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
+              </>
+            ) : project.id === 5 ? (
+              // MixMix 프로젝트 - 배경 이미지
+              <>
+                <div 
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url(${mixmixBgImage})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
+              </>
+            ) : project.id === 1 ? (
+              // 다솜 프로젝트 - 배경 이미지
+              <>
+                <div 
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url(${dasomBgImage})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
+              </>
+            ) : project.id === 6 ? (
+              // react-kit-cli 프로젝트 - 배경 이미지
+              <>
+                <div 
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url(${reactKitCliBgImage})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
+              </>
+            ) : project.id === 4 ? (
+              // minu 프로젝트 - 배경 이미지
+              <>
+                <div 
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url(${minuBgImage})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
+              </>
+            ) : project.id === 2 ? (
+              // 달토끼 프로젝트 - 배경 이미지
+              <>
+                <div 
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url(${moonrabbitBgImage})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
+              </>
+            ) : project.id === 3 ? (
+              // Muuvi 프로젝트 - 배경 이미지
+              <>
+                <div 
+                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+                  style={{ backgroundImage: `url(${muuviBgImage})` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
+              </>
+            ) : (
+              // 다른 프로젝트 - 색상 배경
+              <>
+                <div className={`absolute inset-0 ${project.color || 'bg-zinc-800'}`} />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
+              </>
+            )}
+          </div>
           
+          <div className="p-6 md:p-8 lg:p-10">
           {/* 1. 개요 및 스택 */}
           <div className="mb-8">
-            <p className="text-base md:text-lg text-gray-300 mb-6 leading-relaxed">{project.description}</p>
+            <p className="text-base md:text-lg text-gray-300 mb-4 leading-relaxed">{project.description}</p>
+            {project.role && (
+              <div className="mb-6">
+                <span className="text-xs md:text-sm text-zinc-400 font-medium mb-2 block">역할</span>
+                <p className="text-sm md:text-base text-zinc-200 font-medium">{project.role}</p>
+              </div>
+            )}
             <div className="flex flex-wrap gap-2">
               {project.stack.map((tech) => (
                 <span key={tech} className="px-3 py-1.5 bg-zinc-800/50 rounded-full text-xs md:text-sm text-zinc-300 border border-zinc-700 font-mono">
@@ -177,9 +302,15 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                 <h3 className="text-white font-galmuri font-bold mb-4 text-lg md:text-xl border-b border-zinc-700 pb-2">TECHNICAL DEEP DIVE</h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   {project.details.techTopics.map((topic, idx) => (
-                    <div key={idx} className="border-l-2 border-indigo-500 pl-4 py-3 bg-zinc-800/20">
-                      <h4 className="font-bold text-white mb-2 text-sm md:text-base">{topic.title}</h4>
-                      <p className="text-xs md:text-sm text-gray-400 leading-relaxed">{topic.desc}</p>
+                    <div key={idx} className="border-l-2 border-indigo-500 pl-4 py-4 bg-zinc-800/20">
+                      <h4 className="font-bold text-white mb-3 text-sm md:text-base">{topic.title}</h4>
+                      <div className="text-xs md:text-sm text-gray-300 leading-relaxed space-y-3">
+                        {topic.desc.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 0).map((sentence, i) => (
+                          <p key={i} className="text-gray-300/90">
+                            {sentence.trim()}
+                          </p>
+                        ))}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -195,6 +326,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
 
             </div>
           )}
+          </div>
         </div>
 
         {/* 하단 버튼 영역 */}
