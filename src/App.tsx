@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { HelmetProvider } from 'react-helmet-async';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 
@@ -82,15 +83,17 @@ function App() {
   }, []);
 
   return (
-    <Router>
-        {/* 커서는 가장 위에 배치 */}
-        <Cursor />
-        
-        {/* 헤더를 라우터 내부에, Routes 외부에 배치 */}
-        <Header />
-        
-        <AnimatedRoutes />
-    </Router>
+    <HelmetProvider>
+      <Router>
+          {/* 커서는 가장 위에 배치 */}
+          <Cursor />
+          
+          {/* 헤더를 라우터 내부에, Routes 외부에 배치 */}
+          <Header />
+          
+          <AnimatedRoutes />
+      </Router>
+    </HelmetProvider>
   );
 }
 

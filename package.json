@@ -1,5 +1,5 @@
 {
-  "name": "최도현 포트폴리오",
+  "name": "dohyeon-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -19,6 +19,7 @@
     "lenis": "^1.3.15",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.5",
     "react-router-dom": "^7.9.6"
   },
   "devDependencies": {

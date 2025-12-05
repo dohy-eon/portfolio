@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
+import { Helmet } from 'react-helmet-async';
 import { PROJECTS } from "../constants/data";
-import { ProjectDetail } from "../constants/data";
 import bookBgImage from "../assets/book-bg.png";
 import mixmixBgImage from "../assets/mixmix.png";
 import dasomBgImage from "../assets/dasom-bg.png";
@@ -20,22 +20,72 @@ const ProjectDetailPage = () => {
   // 프로젝트를 찾지 못한 경우
   if (!project) {
     return (
-      <main className="min-h-screen bg-zinc-900 text-white flex items-center justify-center pt-20 md:pt-24">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold mb-4">프로젝트를 찾을 수 없습니다</h1>
-          <button
-            onClick={() => navigate('/projects')}
-            className="px-6 py-2 bg-violet-400 text-black font-bold rounded hover:bg-violet-300 transition-colors"
-          >
-            프로젝트 목록으로 돌아가기
-          </button>
-        </div>
-      </main>
+      <>
+        <Helmet>
+          <title>프로젝트를 찾을 수 없습니다 | 최도현 포트폴리오</title>
+        </Helmet>
+        <main className="min-h-screen bg-zinc-900 text-white flex items-center justify-center pt-20 md:pt-24">
+          <div className="text-center">
+            <h1 className="text-2xl font-bold mb-4">프로젝트를 찾을 수 없습니다</h1>
+            <button
+              onClick={() => navigate('/projects')}
+              className="px-6 py-2 bg-violet-400 text-black font-bold rounded hover:bg-violet-300 transition-colors"
+            >
+              프로젝트 목록으로 돌아가기
+            </button>
+          </div>
+        </main>
+      </>
     );
   }
 
+  // 프로젝트별 이미지 매핑
+  // Vite 빌드 시 import된 이미지는 경로가 변경되므로, 실제 배포 URL을 사용하거나
+  // public 폴더에 이미지를 두고 절대 경로로 참조하는 것을 권장합니다.
+  const getProjectImage = () => {
+    const siteUrl = window.location.origin;
+    // import된 이미지는 빌드 시 해시가 붙으므로, 실제 배포된 경로를 사용해야 합니다.
+    // 현재는 상대 경로를 사용하지만, 배포 시에는 절대 URL로 변경하는 것을 권장합니다.
+    const imageMap: Record<number, string> = {
+      7: bookBgImage.startsWith('http') ? bookBgImage : `${siteUrl}${bookBgImage}`,
+      5: mixmixBgImage.startsWith('http') ? mixmixBgImage : `${siteUrl}${mixmixBgImage}`,
+      1: dasomBgImage.startsWith('http') ? dasomBgImage : `${siteUrl}${dasomBgImage}`,
+      6: reactKitCliBgImage.startsWith('http') ? reactKitCliBgImage : `${siteUrl}${reactKitCliBgImage}`,
+      4: minuBgImage.startsWith('http') ? minuBgImage : `${siteUrl}${minuBgImage}`,
+      2: moonrabbitBgImage.startsWith('http') ? moonrabbitBgImage : `${siteUrl}${moonrabbitBgImage}`,
+      3: muuviBgImage.startsWith('http') ? muuviBgImage : `${siteUrl}${muuviBgImage}`,
+    };
+    return imageMap[project.id] || `${siteUrl}/src/assets/profile.png`;
+  };
+
+  const siteUrl = window.location.origin;
+  const projectUrl = `${siteUrl}/projects/${project.id}`;
+  const ogImage = getProjectImage();
+  const title = `${project.title} | 최도현 포트폴리오`;
+  const description = project.description || `${project.title} 프로젝트 상세 정보입니다.`;
+
   return (
-    <main className="min-h-screen bg-zinc-900 text-white pt-20 md:pt-24">
+    <>
+      <Helmet>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content={`${project.title}, ${project.stack.join(', ')}, 포트폴리오, 프로젝트`} />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={projectUrl} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={ogImage} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={projectUrl} />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
+      </Helmet>
+      <main className="min-h-screen bg-zinc-900 text-white pt-20 md:pt-24">
       {/* 배경 그리드 패턴 */}
       <div className="fixed inset-0 opacity-10 pointer-events-none z-0" 
            style={{ 
@@ -261,6 +311,7 @@ const ProjectDetailPage = () => {
 
       <Footer />
     </main>
+    </>
   );
 };
 

@@ -1,10 +1,14 @@
 import { useRef } from "react";
+import { Helmet } from 'react-helmet-async';
 import { motion } from "framer-motion";
 import ProjectCard from "../components/ProjectCard";
 import { PROJECTS } from "../constants/data";
 import Footer from "../components/Footer";
 
 const Works = () => {
+  const siteUrl = window.location.origin;
+  const ogImage = `${siteUrl}/src/assets/profile.png`;
+  const description = '실제 문제를 기술과 UX로 풀어낸 프로젝트들을 모았습니다.';
   const containerRef = useRef<HTMLDivElement>(null);
 
   // 카드 애니메이션 variants
@@ -16,13 +20,33 @@ const Works = () => {
       transition: {
         delay: i * 0.1,
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     }),
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-zinc-900 via-zinc-900 to-black">
+    <>
+      <Helmet>
+        <title>Projects | 최도현 포트폴리오</title>
+        <meta name="description" content={description} />
+        <meta name="keywords" content="프로젝트, React, TypeScript, 포트폴리오, 웹 개발" />
+        
+        {/* Open Graph / Facebook */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${siteUrl}/projects`} />
+        <meta property="og:title" content="Projects | 최도현 포트폴리오" />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={ogImage} />
+        
+        {/* Twitter */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:url" content={`${siteUrl}/projects`} />
+        <meta name="twitter:title" content="Projects | 최도현 포트폴리오" />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImage} />
+      </Helmet>
+      <main className="min-h-screen bg-gradient-to-b from-zinc-900 via-zinc-900 to-black">
       {/* 헤더 섹션 */}
       <section className="relative flex items-start justify-center overflow-hidden mb-8">
         {/* 배경 그리드 패턴 */}
@@ -83,6 +107,7 @@ const Works = () => {
 
       <Footer />
     </main>
+    </>
   );
 };
 
