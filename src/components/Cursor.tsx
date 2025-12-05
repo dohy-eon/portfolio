@@ -97,7 +97,7 @@ const Cursor = () => {
       {/* 마우스 포인터 역할의 작은 점 (Cursor) */}
       <div 
         ref={cursorRef}
-        className="custom-cursor fixed top-0 left-0 w-2 h-2 bg-yellow-400 rounded-full pointer-events-none z-[9999]"
+        className="custom-cursor fixed top-0 left-0 w-2 h-2 bg-violet-400 rounded-full pointer-events-none z-[9999]"
       />
     </>
   );

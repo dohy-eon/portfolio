@@ -37,8 +37,8 @@ const ProjectSection = () => {
       <div ref={triggerRef} className="relative h-screen w-full">
         
         {/* 섹션 고정 타이틀 */}
-        <div className="absolute top-8 md:top-12 left-6 md:left-12 z-10 mix-blend-difference">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-pretendard font-bold text-white">
+        <div className="absolute top-6 md:top-8 left-6 md:left-12 lg:left-20 z-10 mix-blend-difference">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-pretendard font-bold text-white">
             PROJECTS
           </h2>
         </div>

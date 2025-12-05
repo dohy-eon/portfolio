@@ -90,7 +90,7 @@ const ProjectCard = ({ project }: ProjectProps) => {
       {/* 실제 움직이는 3D 카드 내용물 */}
       <div 
         ref={contentRef}
-        className="w-full max-w-xs md:max-w-sm lg:max-w-md h-[45vh] md:h-[50vh] bg-white rounded-xl md:rounded-2xl flex flex-col shadow-lg md:shadow-xl relative overflow-hidden transform-style-3d transition-all duration-300"
+        className="w-full max-w-xs md:max-w-sm lg:max-w-md h-[40vh] md:h-[45vh] bg-white rounded-lg md:rounded-xl flex flex-col shadow-lg md:shadow-xl relative overflow-hidden transform-style-3d transition-all duration-300"
         style={{ transformStyle: 'preserve-3d' }} // 3D 효과 필수
       >
         {/* 상단 이미지 영역 */}
@@ -165,29 +165,29 @@ const ProjectCard = ({ project }: ProjectProps) => {
         </div>
         
         {/* 하단 텍스트 영역 */}
-        <div className="flex-1 flex flex-col justify-between p-4 md:p-5 bg-white">
+        <div className="flex-1 flex flex-col justify-between p-3 md:p-4 bg-white">
           <div>
             {/* 제목과 카테고리 */}
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="text-lg md:text-xl font-bold text-black">
+            <div className="flex items-center justify-between mb-1.5">
+              <h3 className="text-base md:text-lg font-bold text-black">
                 {project.title}
               </h3>
-              <span className="px-2 py-0.5 bg-zinc-100 text-zinc-600 text-xs font-medium rounded">
+              <span className="px-1.5 py-0.5 bg-zinc-100 text-zinc-600 text-xs font-medium rounded">
                 {project.stack[0] || 'WEB'}
               </span>
             </div>
             
             {/* 설명 */}
-            <p className="text-sm md:text-base text-zinc-600 mb-3 line-clamp-2">
+            <p className="text-xs md:text-sm text-zinc-600 mb-2 line-clamp-2">
               {project.description}
             </p>
           </div>
           
           {/* 하단 정보 */}
-          <div className="flex items-center justify-between pt-3 border-t border-zinc-100">
-            <div className="flex flex-wrap gap-1.5">
+          <div className="flex items-center justify-between pt-2 border-t border-zinc-100">
+            <div className="flex flex-wrap gap-1">
               {project.stack.slice(0, 3).map(tech => (
-                <span key={tech} className="px-2 py-0.5 bg-zinc-50 text-zinc-500 text-xs rounded border border-zinc-200">
+                <span key={tech} className="px-1.5 py-0.5 bg-zinc-50 text-zinc-500 text-xs rounded border border-zinc-200">
                   {tech}
                 </span>
               ))}

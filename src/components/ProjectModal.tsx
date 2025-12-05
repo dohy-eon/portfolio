@@ -275,8 +275,8 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
               
               {/* Problem & Solution - 그리드 2열 */}
               <div className="grid md:grid-cols-2 gap-6">
-                <div className="border-l-2 border-yellow-400 pl-4 py-2">
-                  <h3 className="text-yellow-400 font-galmuri font-bold mb-3 text-sm md:text-base">PROBLEM</h3>
+                <div className="border-l-2 border-violet-400 pl-4 py-2">
+                  <h3 className="text-violet-400 font-galmuri font-bold mb-3 text-sm md:text-base">PROBLEM</h3>
                   <p className="text-xs md:text-sm text-gray-300 leading-relaxed">{project.details.problem}</p>
                 </div>
                 <div className="border-l-2 border-green-400 pl-4 py-2">

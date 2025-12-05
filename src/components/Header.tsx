@@ -40,12 +40,12 @@ const Header = () => {
         }}
         animate={hidden ? "hidden" : "visible"}
         transition={{ duration: 0.35, ease: "easeInOut" }}
-        className="fixed top-0 left-0 w-full z-[100] px-6 py-5 mix-blend-difference text-white"
+        className="fixed top-0 left-0 w-full z-[100] px-6 md:px-12 lg:px-20 py-5 mix-blend-difference text-white"
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* 로고 */}
           <Link to="/" className="text-2xl font-galmuri font-bold tracking-tighter hover:opacity-70 transition-opacity">
-            DOHY.EON
+            DOHY-EON
           </Link>
 
           {/* 데스크톱 메뉴 */}
@@ -60,7 +60,7 @@ const Header = () => {
                 <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
                   {link.name}
                 </span>
-                <span className="absolute top-0 left-0 translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-yellow-400">
+                <span className="absolute top-0 left-0 translate-y-full transition-transform duration-300 group-hover:translate-y-0 text-violet-400">
                   {link.name}
                 </span>
               </Link>
@@ -108,7 +108,7 @@ const Header = () => {
                 >
                   <Link 
                     to={link.path} 
-                    className="text-5xl font-galmuri font-bold text-white hover:text-yellow-400 transition-colors"
+                    className="text-5xl font-galmuri font-bold text-white hover:text-violet-400 transition-colors"
                   >
                     {link.name}
                   </Link>
