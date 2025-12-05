@@ -15,17 +15,24 @@ const ProjectSection = () => {
     const totalPanels = PROJECTS.length;
     const panelsPerView = 3; // 한 화면에 보이는 카드 개수
     
+    if (!sectionRef.current || !triggerRef.current) return;
+    
+    // 각 카드의 너비 (뷰포트의 1/3)
+    const cardWidth = triggerRef.current.offsetWidth / panelsPerView;
+    // 전체 컨테이너의 실제 너비
+    const containerWidth = cardWidth * totalPanels;
+    // 이동해야 할 거리 (전체 너비 - 뷰포트 너비)
+    const moveDistance = containerWidth - triggerRef.current.offsetWidth;
+    
     gsap.to(sectionRef.current, {
-      // 각 카드가 화면의 1/3을 차지하므로, 전체 이동 거리는 (전체 카드 수 - 보이는 카드 수) * (100/3)%
-      xPercent: -100 * (totalPanels - panelsPerView) / panelsPerView, 
+      x: -moveDistance,
       ease: "none",
       scrollTrigger: {
         trigger: triggerRef.current,
         pin: true,
         scrub: 1,
         start: "top top",
-        // 스크롤 길이 조정: (전체 카드 수 - 보이는 카드 수)만큼 스크롤해야 끝나도록 설정
-        end: () => "+=" + (triggerRef.current?.offsetWidth || 0) * (totalPanels - panelsPerView) / panelsPerView, 
+        end: () => `+=${moveDistance}`,
         anticipatePin: 1,
         invalidateOnRefresh: true, // 리사이즈 시 재계산
       },
@@ -33,7 +40,7 @@ const ProjectSection = () => {
   }, { scope: triggerRef });
 
   return (
-    <section className="overflow-hidden bg-zinc-900">
+    <section className="overflow-hidden bg-zinc-900 mb-0">
       <div ref={triggerRef} className="relative h-screen w-full">
         
         {/* 섹션 고정 타이틀 */}
@@ -47,7 +54,7 @@ const ProjectSection = () => {
         <div 
           ref={sectionRef} 
           className="flex h-full flex-row"
-          style={{ width: `${PROJECTS.length * (100 / 3)}%` }}
+          style={{ width: `${(PROJECTS.length / 3) * 100}%` }}
         >
           {PROJECTS.map((project) => (
             <ProjectCard key={project.id} project={project} />
