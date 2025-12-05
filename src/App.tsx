@@ -6,6 +6,9 @@ import 'lenis/dist/lenis.css';
 
 // Pages
 import Home from './pages/Home';
+import Works from './pages/Works';
+import About from './pages/About';
+import ProjectDetail from './pages/ProjectDetail';
 
 // Components
 import Cursor from './components/Cursor';
@@ -25,6 +28,30 @@ const AnimatedRoutes = () => {
           element={
             <PageTransition>
               <Home />
+            </PageTransition>
+          } 
+        />
+        <Route 
+          path="/projects" 
+          element={
+            <PageTransition>
+              <Works />
+            </PageTransition>
+          } 
+        />
+        <Route 
+          path="/about" 
+          element={
+            <PageTransition>
+              <About />
+            </PageTransition>
+          } 
+        />
+        <Route 
+          path="/projects/:id" 
+          element={
+            <PageTransition>
+              <ProjectDetail />
             </PageTransition>
           } 
         />

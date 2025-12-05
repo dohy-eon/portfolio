@@ -27,8 +27,7 @@ const Header = () => {
   // 메뉴 리스트
   const navLinks = [
     { name: 'HOME', path: '/' },
-    { name: 'WORKS', path: '/' }, // 스크롤 이동 구현 전이라 임시 링크
-    { name: 'ABOUT', path: '/' },
+    { name: 'PROJECTS', path: '/projects' },
   ];
 
   return (
