@@ -21,8 +21,8 @@ const AnimatedRoutes = () => {
   const location = useLocation();
 
   return (
-    // mode="wait": 이전 페이지 애니메이션이 끝나야 다음 페이지가 나옴
-    <AnimatePresence mode="wait">
+    // mode="sync": 이전 페이지와 다음 페이지가 동시에 애니메이션되어 더 빠른 전환
+    <AnimatePresence mode="sync">
       <Routes location={location} key={location.pathname}>
         <Route 
           path="/" 

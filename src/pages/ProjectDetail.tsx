@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import { PROJECTS } from "../constants/data";
@@ -16,6 +17,17 @@ const ProjectDetailPage = () => {
   
   // 프로젝트 ID로 프로젝트 찾기
   const project = PROJECTS.find(p => p.id === Number(id));
+
+  // 페이지 진입 시 상단으로 스크롤
+  useEffect(() => {
+    // Lenis 인스턴스가 있으면 Lenis를 사용하여 스크롤
+    if ((window as any).lenis) {
+      (window as any).lenis.scrollTo(0, { immediate: true });
+    } else {
+      // Lenis가 없으면 일반 스크롤 사용
+      window.scrollTo(0, 0);
+    }
+  }, [id]); // id가 변경될 때마다 실행
 
   // 프로젝트를 찾지 못한 경우
   if (!project) {

@@ -10,14 +10,14 @@ const blackBox = {
   animate: {
     height: 0,
     transition: {
-      duration: 1.5,
+      duration: 0.3, // 더 빠른 전환을 위해 0.3초로 단축
       ease: [0.87, 0, 0.13, 1] as const, // easeInOutCustom
     },
   },
   exit: {
     height: "100vh",
     transition: {
-      duration: 1.5,
+      duration: 0.2, // exit 애니메이션을 매우 빠르게
       ease: [0.87, 0, 0.13, 1] as const,
     },
   },
@@ -55,6 +55,12 @@ const PageTransition = ({ children }: Props) => {
         onAnimationStart={() => {
           if (document.body) {
             document.body.classList.add("overflow-hidden");
+          }
+          // 애니메이션 시작 시 즉시 상단으로 스크롤 (더 빠른 반응)
+          if ((window as any).lenis) {
+            (window as any).lenis.scrollTo(0, { immediate: true });
+          } else {
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
           }
         }}
         onAnimationComplete={() => {
