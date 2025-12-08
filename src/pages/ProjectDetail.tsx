@@ -162,43 +162,43 @@ const ProjectDetailPage = () => {
           {project.id === 7 ? (
             // 책이랑 프로젝트 - 배경 이미지
             <div 
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              className="absolute inset-0 bg-contain bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${bookBgImage})` }}
             />
           ) : project.id === 5 ? (
             // MixMix 프로젝트 - 배경 이미지
             <div 
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              className="absolute inset-0 bg-contain bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${mixmixBgImage})` }}
             />
           ) : project.id === 1 ? (
             // 다솜 프로젝트 - 배경 이미지
             <div 
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              className="absolute inset-0 bg-contain bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${dasomBgImage})` }}
             />
           ) : project.id === 6 ? (
             // react-kit-cli 프로젝트 - 배경 이미지
             <div 
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              className="absolute inset-0 bg-contain bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${reactKitCliBgImage})` }}
             />
           ) : project.id === 4 ? (
             // minu 프로젝트 - 배경 이미지
             <div 
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              className="absolute inset-0 bg-contain bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${minuBgImage})` }}
             />
           ) : project.id === 2 ? (
             // 달토끼 프로젝트 - 배경 이미지
             <div 
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              className="absolute inset-0 bg-contain bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${moonrabbitBgImage})` }}
             />
           ) : project.id === 3 ? (
             // Muuvi 프로젝트 - 배경 이미지
             <div 
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              className="absolute inset-0 bg-contain bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${muuviBgImage})` }}
             />
           ) : (
