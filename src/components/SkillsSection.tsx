@@ -1,4 +1,5 @@
 import { useRef, useMemo, useCallback } from "react";
+import { useLocation } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
@@ -32,6 +33,7 @@ const SkillCard = ({ skill, onRefAdd }: SkillCardProps) => {
         hover:scale-[1.03] hover:-translate-y-0.5 hover:shadow-xl
         focus-within:ring-2 focus-within:ring-violet-400/50 focus-within:outline-none
         min-h-[100px] md:min-h-[110px] lg:h-[110px] w-[140px] md:w-[150px] lg:w-[160px] flex flex-col justify-center
+        opacity-100 scale-100 translate-y-0
         ${cardClasses}`}
       role="button"
       tabIndex={0}
@@ -68,6 +70,7 @@ const SkillsSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const skillRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const location = useLocation();
 
   // 메인 스택만 필터링
   const mainSkills = useMemo(() => {
@@ -81,19 +84,18 @@ const SkillsSection = () => {
     }
   }, []);
 
+  // ScrollTrigger 인스턴스 추적
+  const scrollTriggerInstance = useRef<ScrollTrigger | null>(null);
+
   // GSAP 애니메이션 설정
   useGSAP(() => {
     if (!containerRef.current) return;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none none",
-        once: true,
-      },
-    });
+    // 기존 ScrollTrigger 제거 (특정 인스턴스만)
+    if (scrollTriggerInstance.current) {
+      scrollTriggerInstance.current.kill();
+      scrollTriggerInstance.current = null;
+    }
 
     // 초기 상태 설정 (애니메이션 실패 시에도 보이도록)
     gsap.set([titleRef.current, ...skillRefs.current], {
@@ -101,6 +103,19 @@ const SkillsSection = () => {
       y: 0,
       scale: 1,
     });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        end: "bottom 20%",
+        toggleActions: "play none none none",
+        once: true, // 성능 최적화: 한 번만 실행
+      },
+    });
+
+    // ScrollTrigger 인스턴스 저장
+    scrollTriggerInstance.current = tl.scrollTrigger || null;
 
     // 타이틀 애니메이션
     if (titleRef.current) {
@@ -127,7 +142,15 @@ const SkillsSection = () => {
         "-=0.4"
       );
     }
-  }, { scope: containerRef });
+
+    // cleanup
+    return () => {
+      if (scrollTriggerInstance.current) {
+        scrollTriggerInstance.current.kill();
+        scrollTriggerInstance.current = null;
+      }
+    };
+  }, { scope: containerRef, dependencies: [location.pathname] });
 
   return (
     <section
@@ -150,7 +173,7 @@ const SkillsSection = () => {
         <div className="text-center mb-12 md:mb-16">
           <h2
             ref={titleRef}
-            className="font-galmuri font-black text-3xl md:text-4xl lg:text-5xl mb-4"
+            className="font-galmuri font-black text-3xl md:text-4xl lg:text-5xl mb-4 opacity-100 translate-y-0 scale-100"
           >
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-blue-400 to-violet-500">
               MAIN STACK
