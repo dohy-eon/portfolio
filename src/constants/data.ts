@@ -55,14 +55,32 @@ export const HISTORY = [
 ];
 
 export const SKILLS = [
-  { name: "React", level: "Advanced", isMain: true },
-  { name: "TypeScript", level: "Advanced", isMain: true },
-  { name: "Tailwind CSS", level: "Advanced", isMain: true },
-  { name: "Next.js", level: "Intermediate" },
-  { name: "Framer Motion", level: "Intermediate" },
-  { name: "GSAP", level: "Intermediate" },
-  { name: "Node.js", level: "Intermediate" },
-  { name: "Git", level: "Advanced" },
+  // Main Stack
+  { name: "React", level: 4, isMain: true, category: "Main Stack" },
+  { name: "TypeScript", level: 4, isMain: true, category: "Main Stack" },
+  { name: "Tailwind CSS", level: 4, isMain: true, category: "Main Stack" },
+  
+  // Frameworks
+  { name: "Next.js", level: 3, category: "Frameworks" },
+  
+  // State Management
+  { name: "Zustand", level: 4, category: "State Management" },
+  { name: "Recoil", level: 4, category: "State Management" },
+  { name: "TanStack Query", level: 4, category: "State Management" },
+  
+  // Animation
+  { name: "Framer Motion", level: 4, category: "Animation" },
+  { name: "GSAP", level: 3, category: "Animation" },
+  
+  // Languages
+  { name: "JavaScript", level: 3, category: "Languages" },
+  
+  // Tools & Backend
+  { name: "Figma", level: 4, category: "Tools" },
+  { name: "Notion", level: 4, category: "Tools" },
+  { name: "Git", level: 3, category: "Tools" },
+  { name : "Jira", level: 2, category: "Tools" },
+  { name : "Slack", level: 4, category: "Tools" },
 ];
 
 export const PROJECTS = [

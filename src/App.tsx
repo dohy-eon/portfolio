@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import Works from './pages/Works';
 import About from './pages/About';
 import ProjectDetail from './pages/ProjectDetail';
+import Skills from './pages/Skills';
 
 // Components
 import Cursor from './components/Cursor';
@@ -46,6 +47,14 @@ const AnimatedRoutes = () => {
           element={
             <PageTransition>
               <About />
+            </PageTransition>
+          } 
+        />
+        <Route 
+          path="/skills" 
+          element={
+            <PageTransition>
+              <Skills />
             </PageTransition>
           } 
         />

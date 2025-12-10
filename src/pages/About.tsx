@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import IntroSection from '../components/IntroSection';
+import SkillsSection from '../components/SkillsSection';
 import Footer from '../components/Footer';
 import { PROFILE } from '../constants/data';
 
@@ -31,6 +32,7 @@ const About = () => {
       </Helmet>
       <main>
         <IntroSection />
+        <SkillsSection />
         <Footer />
       </main>
     </>
