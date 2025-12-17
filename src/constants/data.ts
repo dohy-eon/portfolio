@@ -293,37 +293,5 @@ export const PROJECTS = [
       retrospective: "와이어프레임을 직접 제작하여 개발 가능성을 사전 검증했고, 디자이너/기획자와의 소통 비용을 30% 절감했습니다."
     }
   },
-  {
-    id: 7,
-    title: "책이랑",
-    period: "2024.12 - 2025.01",
-    description: "독서의 가치를 나누는 독서 커뮤니티 플랫폼",
-    role: "Project Manager & Designer & Full Stack Developer",
-    stack: ["JSP", "JAVA", "MySQL"],
-    color: "bg-amber-600",
-    link: "https://github.com/titeotty/ChaekIRang",
-    demo: "https://www.youtube.com/watch?v=_1pr1QRG7AQ",
-    details: {
-      problem: "현대사회에서 독서의 가치가 떨어지고, 정보 습득이 책을 통하지 않고 다양한 뉴 미디어, 게임, 영화 등에서 이루어지고 있음.",
-      solution: "책에서만 느낄 수 있는 가치를 많은 사람들이 편하게 접근하고 서로 나눌 수 있는 독서 커뮤니티 플랫폼 제공.",
-      features: [
-        "실시간 토론 & 채팅 기능을 통한 독서 경험 공유",
-        "Google Books API를 활용한 책 검색 기능",
-        "실시간 알람 기능으로 커뮤니티 활동 알림",
-        "AWS EC2를 이용한 DB 클라우드화"
-      ],
-      techTopics: [
-        {
-          title: "팀장으로서 프로젝트 리딩 & 기획",
-          desc: "기획부터 디자인, 개발까지 전 과정을 주도하며 서비스의 방향성과 핵심 기능을 결정. 애자일, 워터폴 방법을 학습하고 체계적으로 프로젝트를 진행하며 각 팀원의 강점을 살린 역할 분배와 일정 관리."
-        },
-        {
-          title: "실시간 기능 & 데이터 연동 구현",
-          desc: "토론 & 채팅 기능 개발 시 실시간 데이터 동기화 및 DB 설계의 어려움을 경험. AWS EC2를 이용한 DB 클라우드화를 통해 여러 사용자가 동시에 이용하는 환경에서 데이터 일관성을 유지하며 성능 최적화와 트랜잭션 관리의 중요성을 학습."
-        }
-      ],
-      retrospective: "팀장으로서 프로젝트를 리딩하며 기획 능력과 리더십을 기를 수 있었고, 실시간 기능 구현을 통해 데이터 동기화와 클라우드 인프라 구축 경험을 쌓았습니다. Google Books API 활용을 통해 외부 API 연동 경험도 얻었습니다."
-    }
-  },
 ];
 

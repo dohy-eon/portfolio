@@ -1,7 +1,6 @@
 import { createPortal } from "react-dom";
 import { useEffect } from "react";
 import { ProjectDetail } from "../constants/data";
-import bookBgImage from "../assets/book-bg.png";
 import mixmixBgImage from "../assets/mixmix.png";
 import dasomBgImage from "../assets/dasom-bg.png";
 import reactKitCliBgImage from "../assets/react-kit-cli.png";
@@ -118,16 +117,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
         {/* 상단 헤더 - 배경 이미지 영역 */}
         <div className="relative z-10 border-b border-zinc-800 flex-shrink-0 overflow-hidden">
           {/* 배경 이미지 */}
-          {project.id === 7 ? (
-            // 책이랑 프로젝트
-            <>
-              <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-                style={{ backgroundImage: `url(${bookBgImage})` }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/95 to-zinc-900" />
-            </>
-          ) : project.id === 5 ? (
+          {project.id === 5 ? (
             // MixMix 프로젝트
             <>
               <div 
@@ -178,16 +168,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
         >
           {/* 배경 이미지/색상 영역 */}
           <div className="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden">
-            {project.id === 7 ? (
-              // 책이랑 프로젝트 - 배경 이미지
-              <>
-                <div 
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${bookBgImage})` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
-              </>
-            ) : project.id === 5 ? (
+            {project.id === 5 ? (
               // MixMix 프로젝트 - 배경 이미지
               <>
                 <div 

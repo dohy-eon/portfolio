@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Helmet } from 'react-helmet-async';
 import { PROJECTS } from "../constants/data";
-import bookBgImage from "../assets/book-bg.png";
 import mixmixBgImage from "../assets/mixmix.png";
 import dasomBgImage from "../assets/dasom-bg.png";
 import reactKitCliBgImage from "../assets/react-kit-cli.png";
@@ -59,7 +58,6 @@ const ProjectDetailPage = () => {
     // import된 이미지는 빌드 시 해시가 붙으므로, 실제 배포된 경로를 사용해야 합니다.
     // 현재는 상대 경로를 사용하지만, 배포 시에는 절대 URL로 변경하는 것을 권장합니다.
     const imageMap: Record<number, string> = {
-      7: bookBgImage.startsWith('http') ? bookBgImage : `${siteUrl}${bookBgImage}`,
       5: mixmixBgImage.startsWith('http') ? mixmixBgImage : `${siteUrl}${mixmixBgImage}`,
       1: dasomBgImage.startsWith('http') ? dasomBgImage : `${siteUrl}${dasomBgImage}`,
       6: reactKitCliBgImage.startsWith('http') ? reactKitCliBgImage : `${siteUrl}${reactKitCliBgImage}`,
@@ -109,16 +107,7 @@ const ProjectDetailPage = () => {
       {/* 상단 헤더 - 배경 이미지 영역 */}
       <div className="relative z-10 border-b border-zinc-800 overflow-hidden">
         {/* 배경 이미지 */}
-        {project.id === 7 ? (
-          // 책이랑 프로젝트
-          <>
-            <div 
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-              style={{ backgroundImage: `url(${bookBgImage})` }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/95 to-zinc-900" />
-          </>
-        ) : project.id === 5 ? (
+        {project.id === 5 ? (
           // MixMix 프로젝트
           <>
             <div 
@@ -159,13 +148,7 @@ const ProjectDetailPage = () => {
       <div className="relative z-10">
         {/* 배경 이미지/색상 영역 */}
         <div className="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden">
-          {project.id === 7 ? (
-            // 책이랑 프로젝트 - 배경 이미지
-            <div 
-              className="absolute inset-0 bg-contain bg-center bg-no-repeat"
-              style={{ backgroundImage: `url(${bookBgImage})` }}
-            />
-          ) : project.id === 5 ? (
+          {project.id === 5 ? (
             // MixMix 프로젝트 - 배경 이미지
             <div 
               className="absolute inset-0 bg-contain bg-center bg-no-repeat"

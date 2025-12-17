@@ -4,7 +4,6 @@ import gsap from "gsap";
 import { ProjectDetail } from "../constants/data";
 
 // 이미지 import
-import bookBgImage from "../assets/book-bg.png";
 import mixmixBgImage from "../assets/mixmix.png";
 import dasomBgImage from "../assets/dasom-bg.png";
 import reactKitCliBgImage from "../assets/react-kit-cli.png";
@@ -104,20 +103,7 @@ const ProjectCard = ({ project, variant = 'horizontal' }: ProjectProps) => {
         <div className={`relative w-full flex-shrink-0 overflow-hidden ${
           isGridLayout ? 'h-[50%] rounded-t-2xl' : 'h-[55%]'
         }`}>
-          {project.id === 7 ? (
-            // 책이랑 프로젝트 - 배경 이미지 사용
-            <>
-              <div 
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: `url(${bookBgImage})` }}
-              />
-              <div className={`absolute inset-0 ${
-                isGridLayout 
-                  ? 'bg-gradient-to-b from-transparent via-zinc-900/60 to-zinc-900/90' 
-                  : 'bg-gradient-to-b from-white/20 to-transparent'
-              }`} />
-            </>
-          ) : project.id === 5 ? (
+          {project.id === 5 ? (
             // MixMix 프로젝트 - 배경 이미지 사용
             <>
               <div 
