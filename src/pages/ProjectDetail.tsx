@@ -220,6 +220,11 @@ const ProjectDetailPage = () => {
                       MAU: <span className="text-pink-400 font-bold">{(project as any).stats.mau.toLocaleString()}명</span>
                     </span>
                   )}
+                  {(project as any).stats.downloads !== undefined && (
+                    <span className="px-3 py-1.5 bg-zinc-800/50 rounded-full text-xs md:text-sm text-zinc-200 border border-zinc-700 font-medium">
+                      Total Downloads: <span className="text-blue-400 font-bold">{(project as any).stats.downloads.toLocaleString()}</span>
+                    </span>
+                  )}
                 </div>
               </div>
             )}

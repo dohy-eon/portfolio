@@ -11,6 +11,7 @@ export interface ProjectDetail {
 export interface ProjectStats {
   dau?: number; // Daily Active Users
   mau?: number; // Monthly Active Users
+  downloads?: number; // Total Downloads (for NPM packages, etc.)
 }
 
 export const PROFILE = {
@@ -216,6 +217,9 @@ export const PROJECTS = [
     color: "bg-blue-600",
     link: "https://github.com/dohy-eon/react-kit-cli",
     demo: "https://www.npmjs.com/package/react-kit-cli",
+    stats: {
+      downloads: 393
+    },
     details: {
       problem: "React 프로젝트를 시작할 때마다 TypeScript, ESLint, Prettier, Tailwind CSS, 상태 관리 라이브러리 등을 반복적으로 설정해야 하는 번거로움이 있었고, 이로 인해 초기 개발 환경 구축에 불필요한 리소스가 낭비되었습니다.",
       solution: "사용자가 명령줄 인터페이스(CLI)를 통해 원하는 기술 스택(Redux, Recoil, Zustand, Vitest 등)을 옵션으로 선택하면, 이에 맞춰 최적화된 보일러플레이트를 자동으로 생성해주는 도구를 개발하여 초기 설정 시간을 획기적으로 단축했습니다.",
