@@ -7,6 +7,12 @@ export interface ProjectDetail {
   retrospective: string;
 }
 
+// 프로젝트 통계 타입 정의
+export interface ProjectStats {
+  dau?: number; // Daily Active Users
+  mau?: number; // Monthly Active Users
+}
+
 export const PROFILE = {
   name: "CHOI DOHYEON",
   koreanName: "최도현",
@@ -94,6 +100,10 @@ export const PROJECTS = [
     color: "bg-pink-600",
     link: "https://github.com/dohy-eon/muuvi_Web",
     demo: "https://muuvi.site/",
+    stats: {
+      dau: 90,
+      mau: 321
+    },
     details: {
       problem: "수많은 콘텐츠 속에서 무엇을 볼지 고민하는 '넷플릭스 증후군'을 겪는 사용자들이 많습니다. 기존의 장르 기반 추천은 사용자의 현재 감정이나 상황을 충분히 반영하지 못한다는 점에 착안했습니다.",
       solution: "사용자가 선택한 '무드(Mood)' 키워드를 기반으로 콘텐츠를 추천하는 알고리즘을 개발했습니다. TMDB API의 방대한 데이터베이스와 OpenAI를 활용하여 단순 장르 매칭을 넘어선 맥락적 추천을 제공하며, 음성 인식 기능을 통해 사용자 경험을 강화했습니다.",
@@ -130,6 +140,10 @@ export const PROJECTS = [
     color: "bg-purple-600",
     link: "https://github.com/DMU-MoonRabbit",
     demo: "https://moonrabbit-web.kro.kr/",
+    stats: {
+      dau: 19,
+      mau: 88
+    },
     details: {
       problem: "초기 기획 단계에서 '힐링'과 '상담'이라는 추상적인 주제를 실제 사용자가 몰입할 수 있는 구체적인 서비스 기능으로 구체화하는 것이 가장 큰 과제였습니다. 또한, 타겟 사용자가 편안함을 느낄 수 있는 감성적인 UI와 이를 뒷받침하는 기술적 안정성이 동시에 요구되었습니다.",
       solution: "PM으로서 서비스의 핵심 가치를 '익명성 기반의 따뜻한 연결'로 정의하고, 이를 바탕으로 기능 명세를 세분화했습니다. Figma를 활용해 디자인 프로토타입을 제작하고 UT(사용성 테스트)를 진행하여 실제 사용자의 피드백을 기획과 디자인에 즉각 반영하는 애자일 프로세스를 주도했습니다.",

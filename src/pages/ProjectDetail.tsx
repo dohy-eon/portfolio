@@ -206,6 +206,23 @@ const ProjectDetailPage = () => {
                 <p className="text-sm md:text-base text-zinc-200 font-medium">{project.role}</p>
               </div>
             )}
+            {(project as any).stats && (
+              <div className="mb-6">
+                <span className="text-xs md:text-sm text-zinc-400 font-medium mb-2 block">서비스 통계</span>
+                <div className="flex flex-wrap gap-3">
+                  {(project as any).stats.dau !== undefined && (
+                    <span className="px-3 py-1.5 bg-zinc-800/50 rounded-full text-xs md:text-sm text-zinc-200 border border-zinc-700 font-medium">
+                      최고 DAU: <span className="text-violet-400 font-bold">{(project as any).stats.dau.toLocaleString()}명</span>
+                    </span>
+                  )}
+                  {(project as any).stats.mau !== undefined && (
+                    <span className="px-3 py-1.5 bg-zinc-800/50 rounded-full text-xs md:text-sm text-zinc-200 border border-zinc-700 font-medium">
+                      MAU: <span className="text-pink-400 font-bold">{(project as any).stats.mau.toLocaleString()}명</span>
+                    </span>
+                  )}
+                </div>
+              </div>
+            )}
             <div className="flex flex-wrap gap-2">
               {project.stack.map((tech) => (
                 <span key={tech} className="px-3 py-1.5 bg-zinc-800/50 rounded-full text-xs md:text-sm text-zinc-300 border border-zinc-700 font-mono">
