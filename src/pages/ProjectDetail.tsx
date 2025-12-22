@@ -17,6 +17,20 @@ const ProjectDetailPage = () => {
   // 프로젝트 ID로 프로젝트 찾기
   const project = PROJECTS.find(p => p.id === Number(id));
 
+  // 섹션 제목 컴포넌트
+  const SectionTitle = ({ number, title }: { number: string; title: string }) => (
+    <div className="border-t-2 border-zinc-600 pt-6 mt-12 mb-8">
+      <div className="flex items-baseline gap-4">
+        <span className="text-zinc-400 font-mono text-sm md:text-base font-bold tracking-wider">
+          {number}
+        </span>
+        <h3 className="text-xl md:text-2xl lg:text-3xl font-galmuri font-bold text-white">
+          {title}
+        </h3>
+      </div>
+    </div>
+  );
+
   // 페이지 진입 시 상단으로 스크롤
   useEffect(() => {
     // Lenis 인스턴스가 있으면 Lenis를 사용하여 스크롤
@@ -190,47 +204,64 @@ const ProjectDetailPage = () => {
           )}
         </div>
         
-        <div className="p-6 md:p-8 lg:p-10 lg:px-20 max-w-7xl mx-auto">
+        <div className="px-4 md:px-8 lg:px-12 xl:px-20 py-8 md:py-12 lg:py-16 max-w-7xl mx-auto">
+          {/* Impact 섹션 - 성과 대시보드 */}
+          {(project as any).stats && (
+            <div className="mb-10 md:mb-12 p-6 md:p-8 rounded-xl bg-zinc-800/40 border-2 border-zinc-600 backdrop-blur-sm">
+              <h2 className="text-xl md:text-2xl lg:text-3xl font-galmuri font-bold text-white mb-6 flex items-center gap-3">
+                <span className="w-1 h-8 rounded-full bg-zinc-600"></span>
+                성과 지표
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                {(project as any).stats.dau !== undefined && (
+                  <div className="bg-zinc-900/60 p-6 rounded-lg border border-zinc-700/50">
+                    <div className="text-xs md:text-sm text-zinc-400 font-medium mb-2">일간 활성 사용자</div>
+                    <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-1">
+                      {(project as any).stats.dau.toLocaleString()}
+                    </div>
+                    <div className="text-xs text-zinc-500">최고 일간 활성 사용자</div>
+                  </div>
+                )}
+                {(project as any).stats.mau !== undefined && (
+                  <div className="bg-zinc-900/60 p-6 rounded-lg border border-zinc-700/50">
+                    <div className="text-xs md:text-sm text-zinc-400 font-medium mb-2">월간 활성 사용자</div>
+                    <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-1">
+                      {(project as any).stats.mau.toLocaleString()}
+                    </div>
+                    <div className="text-xs text-zinc-500">월간 활성 사용자</div>
+                  </div>
+                )}
+                {(project as any).stats.downloads !== undefined && (
+                  <div className="bg-zinc-900/60 p-6 rounded-lg border border-zinc-700/50">
+                    <div className="text-xs md:text-sm text-zinc-400 font-medium mb-2">누적 다운로드</div>
+                    <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-1">
+                      {(project as any).stats.downloads.toLocaleString()}
+                    </div>
+                    <div className="text-xs text-zinc-500">누적 다운로드</div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
           {/* 1. 개요 및 스택 */}
-          <div className="mb-8">
-            <p className="text-base md:text-lg text-gray-300 mb-4 leading-relaxed">{project.description}</p>
+          <div className="mb-12">
+            <p className="text-lg md:text-xl text-gray-300 mb-6 leading-relaxed">{project.description}</p>
             {project.period && (
-              <div className="mb-4">
-                <span className="text-xs md:text-sm text-zinc-400 font-medium mb-2 block">기간</span>
-                <p className="text-sm md:text-base text-zinc-200 font-medium">{project.period}</p>
+              <div className="mb-5">
+                <span className="text-sm md:text-base text-zinc-400 font-medium mb-2 block">기간</span>
+                <p className="text-base md:text-lg text-zinc-200 font-medium">{project.period}</p>
               </div>
             )}
             {project.role && (
               <div className="mb-6">
-                <span className="text-xs md:text-sm text-zinc-400 font-medium mb-2 block">역할</span>
-                <p className="text-sm md:text-base text-zinc-200 font-medium">{project.role}</p>
+                <span className="text-sm md:text-base text-zinc-400 font-medium mb-2 block">역할</span>
+                <p className="text-base md:text-lg text-zinc-200 font-medium">{project.role}</p>
               </div>
             )}
-            {(project as any).stats && (
-              <div className="mb-6">
-                <span className="text-xs md:text-sm text-zinc-400 font-medium mb-2 block">서비스 통계</span>
-                <div className="flex flex-wrap gap-3">
-                  {(project as any).stats.dau !== undefined && (
-                    <span className="px-3 py-1.5 bg-zinc-800/50 rounded-full text-xs md:text-sm text-zinc-200 border border-zinc-700 font-medium">
-                      최고 DAU: <span className="text-violet-400 font-bold">{(project as any).stats.dau.toLocaleString()}명</span>
-                    </span>
-                  )}
-                  {(project as any).stats.mau !== undefined && (
-                    <span className="px-3 py-1.5 bg-zinc-800/50 rounded-full text-xs md:text-sm text-zinc-200 border border-zinc-700 font-medium">
-                      MAU: <span className="text-pink-400 font-bold">{(project as any).stats.mau.toLocaleString()}명</span>
-                    </span>
-                  )}
-                  {(project as any).stats.downloads !== undefined && (
-                    <span className="px-3 py-1.5 bg-zinc-800/50 rounded-full text-xs md:text-sm text-zinc-200 border border-zinc-700 font-medium">
-                      Total Downloads: <span className="text-blue-400 font-bold">{(project as any).stats.downloads.toLocaleString()}</span>
-                    </span>
-                  )}
-                </div>
-              </div>
-            )}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 md:gap-3">
               {project.stack.map((tech) => (
-                <span key={tech} className="px-3 py-1.5 bg-zinc-800/50 rounded-full text-xs md:text-sm text-zinc-300 border border-zinc-700 font-mono">
+                <span key={tech} className="px-4 py-2 bg-zinc-800/50 rounded-full text-sm md:text-base text-zinc-300 border border-zinc-700 font-mono">
                   {tech}
                 </span>
               ))}
@@ -239,42 +270,58 @@ const ProjectDetailPage = () => {
 
           {/* 2. 상세 내용 (데이터가 있을 때만 표시) */}
           {project.details && (
-            <div className="space-y-8">
+            <div className="space-y-12">
               
               {/* Problem & Solution - 그리드 2열 */}
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="border-l-2 border-violet-400 pl-4 py-2">
-                  <h3 className="text-violet-400 font-galmuri font-bold mb-3 text-sm md:text-base">PROBLEM</h3>
-                  <p className="text-xs md:text-sm text-gray-300 leading-relaxed">{project.details.problem}</p>
+              <SectionTitle number="01" title="문제 정의와 해결방안" />
+              <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+                <div className="border-l-4 border-zinc-600 pl-6 pr-4 py-6 bg-zinc-900/50 rounded-r-lg">
+                  <h3 className="text-zinc-400 font-galmuri font-bold mb-4 text-base md:text-lg">문제</h3>
+                  <p className="text-sm md:text-base text-gray-300 leading-relaxed">{project.details.problem}</p>
                 </div>
-                <div className="border-l-2 border-green-400 pl-4 py-2">
-                  <h3 className="text-green-400 font-galmuri font-bold mb-3 text-sm md:text-base">SOLUTION</h3>
-                  <p className="text-xs md:text-sm text-gray-300 leading-relaxed">{project.details.solution}</p>
+                <div className="border-l-4 border-zinc-600 pl-6 pr-4 py-6 bg-zinc-800/20 rounded-r-lg">
+                  <h3 className="text-zinc-400 font-galmuri font-bold mb-4 text-base md:text-lg">해결방안</h3>
+                  <p className="text-sm md:text-base text-gray-300 leading-relaxed">{project.details.solution}</p>
                 </div>
               </div>
 
               {/* Features - 그리드 3열 */}
               <div>
-                <h3 className="text-white font-galmuri font-bold mb-4 text-lg md:text-xl border-b border-zinc-700 pb-2">FEATURES</h3>
-                <ul className="grid md:grid-cols-3 gap-4">
-                  {project.details.features.map((feature, idx) => (
-                    <li key={idx} className="text-xs md:text-sm text-gray-300 border border-zinc-800 p-3 bg-zinc-800/30">
-                      {feature}
-                    </li>
-                  ))}
+                <SectionTitle number="02" title="주요 기능" />
+                <ul className="grid md:grid-cols-3 gap-4 lg:gap-6">
+                  {project.details.features.map((feature, idx) => {
+                    // 피처 문자열을 파싱: "핵심 키워드: 설명" 형식으로 분리
+                    const colonIndex = feature.indexOf(':');
+                    const hasKeyword = colonIndex > 0 && colonIndex < 50; // 콜론이 앞부분에 있을 때만 키워드로 인식
+                    const keyword = hasKeyword ? feature.substring(0, colonIndex).trim() : '';
+                    const description = hasKeyword ? feature.substring(colonIndex + 1).trim() : feature;
+                    
+                    return (
+                      <li key={idx} className="text-sm md:text-base border border-zinc-600 p-5 lg:p-6 bg-zinc-800/30 rounded-lg hover:bg-zinc-800/50 transition-colors">
+                        {hasKeyword ? (
+                          <>
+                            <span className="font-bold text-white block mb-2">{keyword}:</span>
+                            <span className="text-gray-400 leading-relaxed">{description}</span>
+                          </>
+                        ) : (
+                          <span className="text-gray-300 leading-relaxed">{feature}</span>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
 
               {/* Tech Topics - 2열 그리드 */}
               <div>
-                <h3 className="text-white font-galmuri font-bold mb-4 text-lg md:text-xl border-b border-zinc-700 pb-2">TECHNICAL DEEP DIVE</h3>
-                <div className="grid md:grid-cols-2 gap-4">
+                <SectionTitle number="03" title="Technical Deep Dive" />
+                <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
                   {project.details.techTopics.map((topic, idx) => (
-                    <div key={idx} className="border-l-2 border-indigo-500 pl-4 py-4 bg-zinc-800/20">
-                      <h4 className="font-bold text-white mb-3 text-sm md:text-base">{topic.title}</h4>
-                      <div className="text-xs md:text-sm text-gray-300 leading-relaxed space-y-3">
+                    <div key={idx} className="border-l-4 border-zinc-600 pl-6 pr-4 py-6 bg-zinc-800/20 rounded-r-lg">
+                      <h4 className="font-bold text-zinc-400 mb-4 text-base md:text-lg">{topic.title}</h4>
+                      <div className="text-sm md:text-base text-gray-300 leading-loose space-y-4">
                         {topic.desc.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 0).map((sentence, i) => (
-                          <p key={i} className="text-gray-300/90">
+                          <p key={i} className="text-gray-400">
                             {sentence.trim()}
                           </p>
                         ))}
@@ -285,9 +332,9 @@ const ProjectDetailPage = () => {
               </div>
 
               {/* Retrospective */}
-              <div className="border-t border-zinc-800 pt-6">
-                <h3 className="text-white font-galmuri font-bold mb-3 text-lg md:text-xl">RETROSPECTIVE</h3>
-                <p className="text-xs md:text-sm text-gray-300 leading-relaxed bg-zinc-800/30 p-4 border border-zinc-800">
+              <div>
+                <SectionTitle number="04" title="회고" />
+                <p className="text-sm md:text-base text-gray-300 leading-loose bg-zinc-800/30 p-6 lg:p-8 border border-zinc-600 rounded-lg">
                   {project.details.retrospective}
                 </p>
               </div>
@@ -326,7 +373,7 @@ const ProjectDetailPage = () => {
         </div>
       </div>
 
-      <Footer />
+      <Footer bgColor="bg-zinc-800" />
     </main>
     </>
   );

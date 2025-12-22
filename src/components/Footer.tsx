@@ -1,8 +1,12 @@
 import { PROFILE } from '../constants/data';
 
-const Footer = () => {
+interface FooterProps {
+  bgColor?: string;
+}
+
+const Footer = ({ bgColor = 'bg-zinc-900' }: FooterProps = {}) => {
   return (
-    <footer className="bg-zinc-900 text-white pt-6 pb-12 md:pt-8 md:pb-16">
+    <footer className={`${bgColor} text-white pt-6 pb-12 md:pt-8 md:pb-16`}>
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20">
         <div className="grid md:grid-cols-2 gap-8 md:gap-12">
           {/* 왼쪽: 소개 */}
