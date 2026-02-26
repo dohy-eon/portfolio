@@ -26,45 +26,45 @@ const AnimatedRoutes = () => {
     // mode="sync": 이전 페이지와 다음 페이지가 동시에 애니메이션되어 더 빠른 전환
     <AnimatePresence mode="sync">
       <Routes location={location} key={location.pathname}>
-        <Route 
-          path="/" 
+        <Route
+          path="/"
           element={
             <PageTransition>
               <Home />
             </PageTransition>
-          } 
+          }
         />
-        <Route 
-          path="/projects" 
+        <Route
+          path="/projects"
           element={
             <PageTransition>
               <Works />
             </PageTransition>
-          } 
+          }
         />
-        <Route 
-          path="/about" 
+        <Route
+          path="/about"
           element={
             <PageTransition>
               <About />
             </PageTransition>
-          } 
+          }
         />
-        <Route 
-          path="/skills" 
+        <Route
+          path="/skills"
           element={
             <PageTransition>
               <Skills />
             </PageTransition>
-          } 
+          }
         />
-        <Route 
-          path="/projects/:id" 
+        <Route
+          path="/projects/:id"
           element={
             <PageTransition>
               <ProjectDetail />
             </PageTransition>
-          } 
+          }
         />
       </Routes>
     </AnimatePresence>
@@ -75,10 +75,10 @@ function App() {
   useEffect(() => {
     // Lenis 스크롤 설정 (페이지 이동 시 스크롤 최상단 이동 처리는 라우터가 하거나 Lenis가 처리)
     const lenis = new Lenis();
-    
+
     // 전역에서 접근 가능하도록 window 객체에 저장
     (window as any).lenis = lenis;
-    
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -95,16 +95,16 @@ function App() {
   return (
     <HelmetProvider>
       <Router>
-          {/* 커서는 가장 위에 배치 */}
-          <Cursor />
-          
-          {/* 헤더를 라우터 내부에, Routes 외부에 배치 */}
-          <Header />
-          
-          <AnimatedRoutes />
-          
-          {/* 플로팅 스크롤 버튼 */}
-          <ScrollToTopBottom />
+        {/* 커서는 가장 위에 배치 */}
+        <Cursor />
+
+        {/* 헤더를 라우터 내부에, Routes 외부에 배치 */}
+        <Header />
+
+        <AnimatedRoutes />
+
+        {/* 플로팅 스크롤 버튼 */}
+        <ScrollToTopBottom />
       </Router>
     </HelmetProvider>
   );

@@ -1,10 +1,10 @@
 import { Helmet } from 'react-helmet-async';
-import { useRef, useMemo, useCallback, useEffect } from "react";
-import { motion } from "framer-motion";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { SKILLS } from "../constants/data";
+import { useRef, useMemo, useCallback, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import { SKILLS } from '../constants/data';
 import Footer from '../components/Footer';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -21,7 +21,7 @@ interface Skill {
 
 interface SkillCardProps {
   skill: Skill;
-  variant: "main" | "other";
+  variant: 'main' | 'other';
   onRefAdd: (el: HTMLDivElement | null) => void;
 }
 
@@ -40,36 +40,36 @@ const getLevelColorClasses = (levelNumber: number) => {
   // 레벨 숫자에 따라 색상 결정
   if (levelNumber >= 4) {
     return {
-      text: "text-green-400",
-      bg: "bg-green-400/15",
-      border: "border-green-400/30",
-      hoverBorder: "hover:border-green-400/50",
-      hoverBg: "hover:bg-green-400/20",
-      hoverShadow: "hover:shadow-green-400/20",
-      glow: "shadow-green-400/10",
-      gradient: "from-green-400/10 via-green-400/5 to-transparent",
+      text: 'text-green-400',
+      bg: 'bg-green-400/15',
+      border: 'border-green-400/30',
+      hoverBorder: 'hover:border-green-400/50',
+      hoverBg: 'hover:bg-green-400/20',
+      hoverShadow: 'hover:shadow-green-400/20',
+      glow: 'shadow-green-400/10',
+      gradient: 'from-green-400/10 via-green-400/5 to-transparent',
     };
   } else if (levelNumber === 3) {
     return {
-      text: "text-blue-400",
-      bg: "bg-blue-400/15",
-      border: "border-blue-400/30",
-      hoverBorder: "hover:border-blue-400/50",
-      hoverBg: "hover:bg-blue-400/20",
-      hoverShadow: "hover:shadow-blue-400/20",
-      glow: "shadow-blue-400/10",
-      gradient: "from-blue-400/10 via-blue-400/5 to-transparent",
+      text: 'text-blue-400',
+      bg: 'bg-blue-400/15',
+      border: 'border-blue-400/30',
+      hoverBorder: 'hover:border-blue-400/50',
+      hoverBg: 'hover:bg-blue-400/20',
+      hoverShadow: 'hover:shadow-blue-400/20',
+      glow: 'shadow-blue-400/10',
+      gradient: 'from-blue-400/10 via-blue-400/5 to-transparent',
     };
   } else {
     return {
-      text: "text-gray-400",
-      bg: "bg-gray-400/15",
-      border: "border-gray-400/30",
-      hoverBorder: "hover:border-gray-400/50",
-      hoverBg: "hover:bg-gray-400/20",
-      hoverShadow: "",
-      glow: "",
-      gradient: "from-gray-400/10 via-gray-400/5 to-transparent",
+      text: 'text-gray-400',
+      bg: 'bg-gray-400/15',
+      border: 'border-gray-400/30',
+      hoverBorder: 'hover:border-gray-400/50',
+      hoverBg: 'hover:bg-gray-400/20',
+      hoverShadow: '',
+      glow: '',
+      gradient: 'from-gray-400/10 via-gray-400/5 to-transparent',
     };
   }
 };
@@ -77,21 +77,19 @@ const getLevelColorClasses = (levelNumber: number) => {
 // 스킬 카드 컴포넌트
 const SkillCard = ({ skill, variant, onRefAdd }: SkillCardProps) => {
   const levelNumber = getLevelNumber(skill.level);
-  const isMain = variant === "main";
-  
+  const isMain = variant === 'main';
+
   const otherColorConfig = getLevelColorClasses(levelNumber);
-  
+
   const cardClasses = isMain
-    ? "border-violet-400/30 bg-gradient-to-br from-violet-400/10 via-violet-400/5 to-transparent hover:border-violet-400/50 hover:from-violet-400/15 hover:via-violet-400/10 hover:to-transparent hover:shadow-violet-400/20 shadow-violet-400/10"
+    ? 'border-violet-400/30 bg-gradient-to-br from-violet-400/10 via-violet-400/5 to-transparent hover:border-violet-400/50 hover:from-violet-400/15 hover:via-violet-400/10 hover:to-transparent hover:shadow-violet-400/20 shadow-violet-400/10'
     : `${otherColorConfig.border} bg-gradient-to-br ${otherColorConfig.gradient} ${otherColorConfig.hoverBorder} ${otherColorConfig.hoverBg} ${otherColorConfig.hoverShadow} ${otherColorConfig.glow}`;
 
   const levelBadgeClasses = isMain
-    ? "text-violet-300 bg-violet-400/20 border border-violet-400/30"
+    ? 'text-violet-300 bg-violet-400/20 border border-violet-400/30'
     : `${otherColorConfig.text} ${otherColorConfig.bg} border ${otherColorConfig.border}`;
 
-  const widthClasses = isMain 
-    ? "w-[140px] md:w-[150px] lg:w-[160px]"
-    : "w-[120px] md:w-[130px]";
+  const widthClasses = isMain ? 'w-[140px] md:w-[150px] lg:w-[160px]' : 'w-[120px] md:w-[130px]';
 
   return (
     <div
@@ -110,19 +108,19 @@ const SkillCard = ({ skill, variant, onRefAdd }: SkillCardProps) => {
       {isMain && (
         <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-violet-400/0 via-violet-400/0 to-violet-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none blur-sm" />
       )}
-      
+
       {/* 카드 내용 */}
       <div className="relative flex flex-col items-center justify-center text-center gap-2 w-full">
         {/* 스킬 이름 */}
         <span
           className={`font-galmuri ${
-            isMain ? "font-bold" : "font-semibold"
+            isMain ? 'font-bold' : 'font-semibold'
           } text-sm md:text-base text-white group-hover:text-white transition-colors duration-300
           line-clamp-2 leading-tight px-1 break-words`}
         >
           {skill.name}
         </span>
-        
+
         {/* 레벨 배지 */}
         <span
           className={`text-[10px] md:text-xs font-mono px-2.5 py-1 rounded-md ${levelBadgeClasses} transition-all duration-300 group-hover:scale-110 whitespace-nowrap flex-shrink-0`}
@@ -130,7 +128,7 @@ const SkillCard = ({ skill, variant, onRefAdd }: SkillCardProps) => {
           Lv.{levelNumber}
         </span>
       </div>
-      
+
       {/* 호버 시 상단 강조선 */}
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-current to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-xl" />
     </div>
@@ -151,16 +149,11 @@ const SkillCategorySection = ({ category, skills, onRefAdd }: SkillCategorySecti
         </h3>
         <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-600 to-transparent" />
       </div>
-      
+
       {/* 스킬 그리드 */}
       <div className="flex flex-wrap justify-center gap-2.5">
         {skills.map((skill) => (
-          <SkillCard
-            key={skill.name}
-            skill={skill}
-            variant="other"
-            onRefAdd={onRefAdd}
-          />
+          <SkillCard key={skill.name} skill={skill} variant="other" onRefAdd={onRefAdd} />
         ))}
       </div>
     </div>
@@ -180,16 +173,11 @@ const MainStackSection = ({ skills, onRefAdd }: { skills: Skill[]; onRefAdd: (el
         </h3>
         <div className="h-px w-24 mx-auto bg-gradient-to-r from-transparent via-violet-400/50 to-transparent" />
       </div>
-      
+
       {/* 메인 스택 그리드 */}
       <div className="flex flex-wrap justify-center gap-3">
         {skills.map((skill) => (
-          <SkillCard
-            key={skill.name}
-            skill={skill}
-            variant="main"
-            onRefAdd={onRefAdd}
-          />
+          <SkillCard key={skill.name} skill={skill} variant="main" onRefAdd={onRefAdd} />
         ))}
       </div>
     </div>
@@ -205,14 +193,17 @@ const Skills = () => {
     const main = SKILLS.filter((skill) => skill.isMain) as Skill[];
     const other = SKILLS.filter((skill) => !skill.isMain) as Skill[];
 
-    const grouped = other.reduce((acc, skill) => {
-      const category = skill.category || "Other";
-      if (!acc[category]) {
-        acc[category] = [];
-      }
-      acc[category].push(skill);
-      return acc;
-    }, {} as Record<string, Skill[]>);
+    const grouped = other.reduce(
+      (acc, skill) => {
+        const category = skill.category || 'Other';
+        if (!acc[category]) {
+          acc[category] = [];
+        }
+        acc[category].push(skill);
+        return acc;
+      },
+      {} as Record<string, Skill[]>
+    );
 
     return { mainSkills: main, skillsByCategory: grouped };
   }, []);
@@ -238,35 +229,38 @@ const Skills = () => {
   }, [mainSkills, skillsByCategory]);
 
   // GSAP 애니메이션 설정
-  useGSAP(() => {
-    if (!containerRef.current) return;
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none none",
-        once: true,
-      },
-    });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none none',
+          once: true,
+        },
+      });
 
-    // 스킬 카드 애니메이션
-    if (skillRefs.current.length > 0) {
-      tl.fromTo(
-        skillRefs.current,
-        { opacity: 0, scale: 0.9, y: 15 },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.05,
-          ease: "back.out(1.4)",
-        }
-      );
-    }
-  }, { scope: containerRef });
+      // 스킬 카드 애니메이션
+      if (skillRefs.current.length > 0) {
+        tl.fromTo(
+          skillRefs.current,
+          { opacity: 0, scale: 0.9, y: 15 },
+          {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.05,
+            ease: 'back.out(1.4)',
+          }
+        );
+      }
+    },
+    { scope: containerRef }
+  );
 
   const siteUrl = window.location.origin;
 
@@ -276,13 +270,13 @@ const Skills = () => {
         <title>Skills | 최도현 포트폴리오</title>
         <meta name="description" content="프론트엔드 개발자 최도현의 기술 스택과 스킬을 확인하세요." />
         <meta name="keywords" content="프론트엔드 개발자, React, TypeScript, 기술 스택, Skills" />
-        
+
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${siteUrl}/skills`} />
         <meta property="og:title" content="Skills | 최도현 포트폴리오" />
         <meta property="og:description" content="프론트엔드 개발자 최도현의 기술 스택과 스킬을 확인하세요." />
-        
+
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={`${siteUrl}/skills`} />
@@ -293,16 +287,21 @@ const Skills = () => {
         {/* 헤더 섹션 */}
         <section className="relative flex items-start justify-center overflow-hidden mb-8">
           {/* 배경 그리드 패턴 */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none" 
-               style={{ 
-                 backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)', 
-                 backgroundSize: '80px 80px' 
-               }} 
+          <div
+            className="absolute inset-0 opacity-10 pointer-events-none"
+            style={{
+              backgroundImage:
+                'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)',
+              backgroundSize: '80px 80px',
+            }}
           />
-          
+
           {/* 배경 그라데이션 */}
-          <div className="absolute inset-0 bg-gradient-to-b from-violet-900/20 via-transparent to-transparent" style={{ height: '70%' }} />
-          
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-violet-900/20 via-transparent to-transparent"
+            style={{ height: '70%' }}
+          />
+
           <div className="relative z-10 text-center px-6 md:px-12 lg:px-20 pt-20 pb-0">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -335,14 +334,13 @@ const Skills = () => {
             className="absolute inset-0 z-0 opacity-[0.08] pointer-events-none"
             style={{
               backgroundImage:
-                "linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)",
-              backgroundSize: "40px 40px",
+                'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)',
+              backgroundSize: '40px 40px',
             }}
           />
 
           {/* 메인 레이아웃 */}
           <div className="relative z-10 w-full px-6 md:px-12 lg:px-20 max-w-7xl mx-auto">
-
             <div className="space-y-10 md:space-y-12">
               {/* 메인 스택 섹션 */}
               <MainStackSection skills={mainSkills} onRefAdd={addToRefs} />
@@ -350,12 +348,7 @@ const Skills = () => {
               {/* 카테고리별 스킬 섹션 */}
               <div className="flex flex-wrap justify-center gap-8 md:gap-10">
                 {Object.entries(skillsByCategory).map(([category, skills]) => (
-                  <SkillCategorySection
-                    key={category}
-                    category={category}
-                    skills={skills}
-                    onRefAdd={addToRefs}
-                  />
+                  <SkillCategorySection key={category} category={category} skills={skills} onRefAdd={addToRefs} />
                 ))}
               </div>
             </div>
@@ -368,4 +361,3 @@ const Skills = () => {
 };
 
 export default Skills;
-

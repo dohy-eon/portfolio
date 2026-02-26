@@ -11,7 +11,7 @@ const ScrollToTopBottom = () => {
   useEffect(() => {
     const handleScroll = () => {
       const lenis = (window as any).lenis;
-      
+
       let scrollY: number;
       if (lenis) {
         scrollY = lenis.scroll;
@@ -32,7 +32,7 @@ const ScrollToTopBottom = () => {
       handleScroll();
       rafId = requestAnimationFrame(checkScroll);
     };
-    
+
     rafId = requestAnimationFrame(checkScroll);
 
     // 초기 상태 확인
@@ -47,7 +47,7 @@ const ScrollToTopBottom = () => {
 
   const handleClick = () => {
     const lenis = (window as any).lenis;
-    
+
     if (isAtTop) {
       // 상단에 있으면 하단으로
       if (lenis) {
@@ -83,19 +83,19 @@ const ScrollToTopBottom = () => {
         <motion.button
           onClick={handleClick}
           className="relative w-14 h-14 rounded-full overflow-hidden group"
-          aria-label={isAtTop ? "맨 아래로 이동" : "맨 위로 이동"}
+          aria-label={isAtTop ? '맨 아래로 이동' : '맨 위로 이동'}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
           {/* Liquid Glass 배경 */}
           <div className="absolute inset-0 bg-white/10 backdrop-blur-md border border-white/20 rounded-full shadow-2xl" />
-          
+
           {/* 반사 효과 (상단 하이라이트) */}
           <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-transparent to-transparent rounded-full" />
-          
+
           {/* 그라데이션 보더 효과 */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-violet-400/50 via-purple-400/30 to-pink-400/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-          
+
           {/* 아이콘 컨테이너 */}
           <div className="relative w-full h-full flex items-center justify-center">
             <motion.div
@@ -131,7 +131,7 @@ const ScrollToTopBottom = () => {
               )}
             </motion.div>
           </div>
-          
+
           {/* 호버 시 빛나는 효과 */}
           <div className="absolute inset-0 rounded-full bg-white/0 group-hover:bg-white/10 transition-all duration-500" />
         </motion.button>

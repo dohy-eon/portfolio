@@ -1,9 +1,9 @@
-import { useRef, useMemo, useCallback } from "react";
-import { useLocation } from "react-router-dom";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
-import { SKILLS } from "../constants/data";
+import { useRef, useMemo, useCallback } from 'react';
+import { useLocation } from 'react-router-dom';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import { SKILLS } from '../constants/data';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,7 +24,7 @@ interface SkillCardProps {
 const SkillCard = ({ skill, onRefAdd }: SkillCardProps) => {
   const cardClasses = `border-violet-400/30 bg-gradient-to-br from-violet-400/10 via-violet-400/5 to-transparent hover:border-violet-400/50 hover:from-violet-400/15 hover:via-violet-400/10 hover:to-transparent hover:shadow-violet-400/20 shadow-violet-400/10`;
 
-  const levelBadgeClasses = "text-violet-300 bg-violet-400/20 border border-violet-400/30";
+  const levelBadgeClasses = 'text-violet-300 bg-violet-400/20 border border-violet-400/30';
 
   return (
     <div
@@ -41,7 +41,7 @@ const SkillCard = ({ skill, onRefAdd }: SkillCardProps) => {
     >
       {/* 글로우 효과 */}
       <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-violet-400/0 via-violet-400/0 to-violet-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none blur-sm" />
-      
+
       {/* 카드 내용 */}
       <div className="relative flex flex-col items-center justify-center text-center gap-2 w-full">
         {/* 스킬 이름 */}
@@ -51,7 +51,7 @@ const SkillCard = ({ skill, onRefAdd }: SkillCardProps) => {
         >
           {skill.name}
         </span>
-        
+
         {/* 레벨 배지 */}
         <span
           className={`text-[10px] md:text-xs font-mono px-2.5 py-1 rounded-md ${levelBadgeClasses} transition-all duration-300 group-hover:scale-110 whitespace-nowrap flex-shrink-0`}
@@ -59,7 +59,7 @@ const SkillCard = ({ skill, onRefAdd }: SkillCardProps) => {
           Lv.{skill.level}
         </span>
       </div>
-      
+
       {/* 호버 시 상단 강조선 */}
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-current to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-xl" />
     </div>
@@ -88,69 +88,68 @@ const SkillsSection = () => {
   const scrollTriggerInstance = useRef<ScrollTrigger | null>(null);
 
   // GSAP 애니메이션 설정
-  useGSAP(() => {
-    if (!containerRef.current) return;
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
 
-    // 기존 ScrollTrigger 제거 (특정 인스턴스만)
-    if (scrollTriggerInstance.current) {
-      scrollTriggerInstance.current.kill();
-      scrollTriggerInstance.current = null;
-    }
-
-    // 초기 상태 설정 (애니메이션 실패 시에도 보이도록)
-    gsap.set([titleRef.current, ...skillRefs.current], {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-    });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        end: "bottom 20%",
-        toggleActions: "play none none none",
-        once: true, // 성능 최적화: 한 번만 실행
-      },
-    });
-
-    // ScrollTrigger 인스턴스 저장
-    scrollTriggerInstance.current = tl.scrollTrigger || null;
-
-    // 타이틀 애니메이션
-    if (titleRef.current) {
-      tl.fromTo(
-        titleRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
-      );
-    }
-
-    // 스킬 카드 애니메이션
-    if (skillRefs.current.length > 0) {
-      tl.fromTo(
-        skillRefs.current,
-        { opacity: 0, scale: 0.9, y: 15 },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.6,
-          stagger: 0.05,
-          ease: "back.out(1.4)",
-        },
-        "-=0.4"
-      );
-    }
-
-    // cleanup
-    return () => {
+      // 기존 ScrollTrigger 제거 (특정 인스턴스만)
       if (scrollTriggerInstance.current) {
         scrollTriggerInstance.current.kill();
         scrollTriggerInstance.current = null;
       }
-    };
-  }, { scope: containerRef, dependencies: [location.pathname] });
+
+      // 초기 상태 설정 (애니메이션 실패 시에도 보이도록)
+      gsap.set([titleRef.current, ...skillRefs.current], {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: containerRef.current,
+          start: 'top 80%',
+          end: 'bottom 20%',
+          toggleActions: 'play none none none',
+          once: true, // 성능 최적화: 한 번만 실행
+        },
+      });
+
+      // ScrollTrigger 인스턴스 저장
+      scrollTriggerInstance.current = tl.scrollTrigger || null;
+
+      // 타이틀 애니메이션
+      if (titleRef.current) {
+        tl.fromTo(titleRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' });
+      }
+
+      // 스킬 카드 애니메이션
+      if (skillRefs.current.length > 0) {
+        tl.fromTo(
+          skillRefs.current,
+          { opacity: 0, scale: 0.9, y: 15 },
+          {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.05,
+            ease: 'back.out(1.4)',
+          },
+          '-=0.4'
+        );
+      }
+
+      // cleanup
+      return () => {
+        if (scrollTriggerInstance.current) {
+          scrollTriggerInstance.current.kill();
+          scrollTriggerInstance.current = null;
+        }
+      };
+    },
+    { scope: containerRef, dependencies: [location.pathname] }
+  );
 
   return (
     <section
@@ -162,8 +161,8 @@ const SkillsSection = () => {
         className="absolute inset-0 z-0 opacity-[0.08] pointer-events-none"
         style={{
           backgroundImage:
-            "linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)",
-          backgroundSize: "40px 40px",
+            'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)',
+          backgroundSize: '40px 40px',
         }}
       />
 
@@ -184,11 +183,7 @@ const SkillsSection = () => {
         {/* 메인 스택만 표시 */}
         <div className="flex flex-wrap justify-center gap-3">
           {mainSkills.map((skill) => (
-            <SkillCard
-              key={skill.name}
-              skill={skill}
-              onRefAdd={addToRefs}
-            />
+            <SkillCard key={skill.name} skill={skill} onRefAdd={addToRefs} />
           ))}
         </div>
       </div>

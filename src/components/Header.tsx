@@ -9,7 +9,7 @@ const Header = () => {
   const location = useLocation();
 
   // 스크롤 감지 로직: 스크롤을 내리면 숨기고(true), 올리면 보임(false)
-  useMotionValueEvent(scrollY, "change", (latest) => {
+  useMotionValueEvent(scrollY, 'change', (latest) => {
     const previous = scrollY.getPrevious() ?? 0;
     // 150px 이상 스크롤했고, 아래로 내려가는 중이면 헤더 숨김
     if (latest > previous && latest > 150) {
@@ -36,10 +36,10 @@ const Header = () => {
       <motion.header
         variants={{
           visible: { y: 0 },
-          hidden: { y: "-100%" },
+          hidden: { y: '-100%' },
         }}
-        animate={hidden ? "hidden" : "visible"}
-        transition={{ duration: 0.35, ease: "easeInOut" }}
+        animate={hidden ? 'hidden' : 'visible'}
+        transition={{ duration: 0.35, ease: 'easeInOut' }}
         className="fixed top-0 left-0 w-full z-[100] px-6 md:px-12 lg:px-20 py-5 mix-blend-difference text-white"
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -51,11 +51,7 @@ const Header = () => {
           {/* 데스크톱 메뉴 */}
           <nav className="hidden md:flex gap-10 text-sm font-bold font-galmuri tracking-widest">
             {navLinks.map((link) => (
-              <Link 
-                key={link.name} 
-                to={link.path} 
-                className="relative group overflow-hidden"
-              >
+              <Link key={link.name} to={link.path} className="relative group overflow-hidden">
                 {/* 호버 시 밑줄 애니메이션 */}
                 <span className="inline-block transition-transform duration-300 group-hover:-translate-y-full">
                   {link.name}
@@ -72,17 +68,17 @@ const Header = () => {
             className="md:hidden z-50 flex flex-col justify-center items-end gap-1.5 group"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <motion.div 
+            <motion.div
               animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-              className="w-8 h-0.5 bg-white origin-center" 
+              className="w-8 h-0.5 bg-white origin-center"
             />
-            <motion.div 
+            <motion.div
               animate={isMobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="w-6 h-0.5 bg-white group-hover:w-8 transition-all" 
+              className="w-6 h-0.5 bg-white group-hover:w-8 transition-all"
             />
-            <motion.div 
+            <motion.div
               animate={isMobileMenuOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-              className="w-4 h-0.5 bg-white group-hover:w-8 transition-all origin-center" 
+              className="w-4 h-0.5 bg-white group-hover:w-8 transition-all origin-center"
             />
           </button>
         </div>
@@ -92,9 +88,9 @@ const Header = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: "-100%" }}
+            initial={{ opacity: 0, y: '-100%' }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "-100%" }}
+            exit={{ opacity: 0, y: '-100%' }}
             transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }} // 커스텀 베지어 곡선
             className="fixed inset-0 z-[90] bg-black flex flex-col items-center justify-center"
           >
@@ -106,8 +102,8 @@ const Header = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.1 * index }}
                 >
-                  <Link 
-                    to={link.path} 
+                  <Link
+                    to={link.path}
                     className="text-5xl font-galmuri font-bold text-white hover:text-violet-400 transition-colors"
                   >
                     {link.name}
@@ -123,4 +119,3 @@ const Header = () => {
 };
 
 export default Header;
-

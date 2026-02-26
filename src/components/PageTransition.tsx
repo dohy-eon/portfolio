@@ -1,10 +1,10 @@
-import { motion } from "framer-motion";
-import { ReactNode } from "react";
+import { motion } from 'framer-motion';
+import { ReactNode } from 'react';
 
 // 애니메이션 설정 (검은색 슬라이드가 위로 올라가는 효과)
 const blackBox = {
   initial: {
-    height: "100vh",
+    height: '100vh',
     bottom: 0,
   },
   animate: {
@@ -15,7 +15,7 @@ const blackBox = {
     },
   },
   exit: {
-    height: "100vh",
+    height: '100vh',
     transition: {
       duration: 0.2, // exit 애니메이션을 매우 빠르게
       ease: [0.87, 0, 0.13, 1] as const,
@@ -54,7 +54,7 @@ const PageTransition = ({ children }: Props) => {
         variants={blackBox}
         onAnimationStart={() => {
           if (document.body) {
-            document.body.classList.add("overflow-hidden");
+            document.body.classList.add('overflow-hidden');
           }
           // 애니메이션 시작 시 즉시 상단으로 스크롤 (더 빠른 반응)
           if ((window as any).lenis) {
@@ -65,13 +65,13 @@ const PageTransition = ({ children }: Props) => {
         }}
         onAnimationComplete={() => {
           if (document.body) {
-            document.body.classList.remove("overflow-hidden");
+            document.body.classList.remove('overflow-hidden');
           }
         }}
       >
         {/* 로딩 중에 잠깐 보여줄 텍스트 (선택사항) */}
-        <motion.div 
-          variants={textContainer} 
+        <motion.div
+          variants={textContainer}
           className="absolute z-50 flex items-center text-white text-4xl font-bold font-pretendard"
         >
           Loading...
@@ -85,4 +85,3 @@ const PageTransition = ({ children }: Props) => {
 };
 
 export default PageTransition;
-

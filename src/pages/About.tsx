@@ -15,14 +15,14 @@ const About = () => {
         <title>About | 최도현 포트폴리오</title>
         <meta name="description" content={description} />
         <meta name="keywords" content="프론트엔드 개발자, React, TypeScript, 소개, About" />
-        
+
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${siteUrl}/about`} />
         <meta property="og:title" content="About | 최도현 포트폴리오" />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={ogImage} />
-        
+
         {/* Twitter */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content={`${siteUrl}/about`} />
