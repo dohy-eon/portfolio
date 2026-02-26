@@ -58,23 +58,24 @@ export const HISTORY = [
   {
     category: 'Awards',
     items: [
-      { year: '2025.12', title: '동양미래대학교 생성형 AI 경진대회 장려상' },
-      { year: '2025.11', title: '동양미래대학교 스마트 SW 개발 경진대회 우수상' },
-      { year: '2025.02', title: '동양미래대학교 생성형 AI를 활용한 문제해결 해커톤 장려상' },
-      { year: '2024.05', title: '동양미래대학교 솜커톤 대상' },
-      { year: '2023.12', title: '동양미래대학교 AI PD Lab 부트캠프 우수상' },
+      { year: '2026.02', title: 'UMC 9기 데모데이 우수상' },
+      { year: '2025.12', title: '생성형 AI 경진대회 장려상' },
+      { year: '2025.11', title: '스마트 SW 개발 경진대회 우수상' },
+      { year: '2025.02', title: '생성형 AI 문제해결 해커톤 장려상' },
+      { year: '2024.05', title: '컴퓨터공학부 해커톤 대상' },
+      { year: '2023.12', title: 'AI PD Lab 부트캠프 우수상' },
       { year: '2022.05', title: 'TOEIC 910점' },
     ],
   },
   {
     category: 'Activities',
     items: [
-      { year: '2025.08 ~', title: '전국 IT 연합 동아리 University MakeUs Challenge 9th | 동양미래대 회장' },
+      { year: '2025.08 - 2026.02', title: '전국 IT 연합 동아리 UMC 9th | Cassiopeia 지부장, 동양미래대 회장' },
       { year: '2025.07 - 2025.08', title: 'DND 13th | Web Frontend' },
-      { year: '2024.12 - 2025.12', title: '동양미래대학교 컴퓨터공학부 전공동아리 다솜 | 학술팀장' },
-      { year: '2024.09 - 2024.12', title: '동양미래대학교 컴퓨터공학부 전공동아리 다솜 | 기획부장' },
+      { year: '2024.12 - 2025.12', title: '컴퓨터공학부 전공동아리 다솜 | 학술팀장' },
+      { year: '2024.09 - 2024.12', title: '컴퓨터공학부 전공동아리 다솜 | 기획부장' },
       { year: '2024.07 - 2024.11', title: '전국 IT 연합 동아리 9oormthon univ 3rd | Web Frontend' },
-      { year: '2023.03 - 2024.09', title: '동양미래대학교 컴퓨터공학부 전공동아리 MIT' },
+      { year: '2023.03 - 2024.09', title: '컴퓨터공학부 전공동아리 MIT' },
     ],
   },
 ];
