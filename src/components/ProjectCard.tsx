@@ -3,14 +3,25 @@ import { useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
 import { ProjectDetail } from '../constants/data';
 
-// 이미지 import
-import mixmixBgImage from '../assets/mixmix.png';
-import dasomBgImage from '../assets/dasom-bg.png';
-import reactKitCliBgImage from '../assets/react-kit-cli.png';
-import minuBgImage from '../assets/minu.png';
-import moonrabbitBgImage from '../assets/moonrabbit.png';
-import muuviBgImage from '../assets/muuvi.png';
-import valuediBgImage from '../assets/valuedi.png';
+import {
+  mixmixBgImage,
+  dasomBgImage,
+  reactKitCliBgImage,
+  minuBgImage,
+  moonrabbitBgImage,
+  muuviBgImage,
+  valuediBgImage,
+} from '../constants/projectThumbnails';
+
+const THUMB_BY_PROJECT_ID: Partial<Record<number, string>> = {
+  1: dasomBgImage,
+  2: moonrabbitBgImage,
+  3: muuviBgImage,
+  4: minuBgImage,
+  5: mixmixBgImage,
+  6: reactKitCliBgImage,
+  7: valuediBgImage,
+};
 
 // Project 타입 정의
 interface ProjectProps {
@@ -106,105 +117,19 @@ const ProjectCard = ({ project, variant = 'horizontal' }: ProjectProps) => {
               isGridLayout ? 'h-[50%] rounded-t-2xl' : 'h-[55%]'
             }`}
           >
-            {project.id === 7 ? (
-              // VALUEDI 프로젝트 - 배경 이미지 사용
+            {THUMB_BY_PROJECT_ID[project.id] ? (
               <>
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${valuediBgImage})` }}
+                <img
+                  src={THUMB_BY_PROJECT_ID[project.id]}
+                  alt=""
+                  width={560}
+                  height={420}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
                 <div
-                  className={`absolute inset-0 ${
-                    isGridLayout
-                      ? 'bg-gradient-to-b from-transparent via-zinc-900/60 to-zinc-900/90'
-                      : 'bg-gradient-to-b from-white/20 to-transparent'
-                  }`}
-                />
-              </>
-            ) : project.id === 5 ? (
-              // MixMix 프로젝트 - 배경 이미지 사용
-              <>
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${mixmixBgImage})` }}
-                />
-                <div
-                  className={`absolute inset-0 ${
-                    isGridLayout
-                      ? 'bg-gradient-to-b from-transparent via-zinc-900/60 to-zinc-900/90'
-                      : 'bg-gradient-to-b from-white/20 to-transparent'
-                  }`}
-                />
-              </>
-            ) : project.id === 1 ? (
-              // 다솜 프로젝트 - 배경 이미지 사용
-              <>
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${dasomBgImage})` }}
-                />
-                <div
-                  className={`absolute inset-0 ${
-                    isGridLayout
-                      ? 'bg-gradient-to-b from-transparent via-zinc-900/60 to-zinc-900/90'
-                      : 'bg-gradient-to-b from-white/20 to-transparent'
-                  }`}
-                />
-              </>
-            ) : project.id === 6 ? (
-              // react-kit-cli 프로젝트 - 배경 이미지 사용
-              <>
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${reactKitCliBgImage})` }}
-                />
-                <div
-                  className={`absolute inset-0 ${
-                    isGridLayout
-                      ? 'bg-gradient-to-b from-transparent via-zinc-900/60 to-zinc-900/90'
-                      : 'bg-gradient-to-b from-white/20 to-transparent'
-                  }`}
-                />
-              </>
-            ) : project.id === 4 ? (
-              // minu 프로젝트 - 배경 이미지 사용
-              <>
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${minuBgImage})` }}
-                />
-                <div
-                  className={`absolute inset-0 ${
-                    isGridLayout
-                      ? 'bg-gradient-to-b from-transparent via-zinc-900/60 to-zinc-900/90'
-                      : 'bg-gradient-to-b from-white/20 to-transparent'
-                  }`}
-                />
-              </>
-            ) : project.id === 2 ? (
-              // 달토끼 프로젝트 - 배경 이미지 사용
-              <>
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${moonrabbitBgImage})` }}
-                />
-                <div
-                  className={`absolute inset-0 ${
-                    isGridLayout
-                      ? 'bg-gradient-to-b from-transparent via-zinc-900/60 to-zinc-900/90'
-                      : 'bg-gradient-to-b from-white/20 to-transparent'
-                  }`}
-                />
-              </>
-            ) : project.id === 3 ? (
-              // Muuvi 프로젝트 - 배경 이미지 사용
-              <>
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${muuviBgImage})` }}
-                />
-                <div
-                  className={`absolute inset-0 ${
+                  className={`pointer-events-none absolute inset-0 ${
                     isGridLayout
                       ? 'bg-gradient-to-b from-transparent via-zinc-900/60 to-zinc-900/90'
                       : 'bg-gradient-to-b from-white/20 to-transparent'
@@ -212,11 +137,10 @@ const ProjectCard = ({ project, variant = 'horizontal' }: ProjectProps) => {
                 />
               </>
             ) : (
-              // 다른 프로젝트 - 색상 배경
               <>
-                <div className={`w-full h-full ${project.color}`} />
+                <div className={`h-full w-full ${project.color}`} />
                 {isGridLayout && (
-                  <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/60 to-zinc-900/90" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/60 to-zinc-900/90" />
                 )}
               </>
             )}
@@ -257,7 +181,7 @@ const ProjectCard = ({ project, variant = 'horizontal' }: ProjectProps) => {
               {/* 그리드 레이아웃일 때 역할 표시 */}
               {isGridLayout && project.role && (
                 <div className="mb-4">
-                  <span className="text-xs text-violet-400/70 font-medium">{project.role.split('&')[0].trim()}</span>
+                  <span className="text-xs text-violet-300 font-medium">{project.role.split('&')[0].trim()}</span>
                 </div>
               )}
             </div>

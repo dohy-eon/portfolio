@@ -2,13 +2,16 @@ import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { PROJECTS, MajorPR } from '../constants/data';
-import mixmixBgImage from '../assets/mixmix.png';
-import dasomBgImage from '../assets/dasom-bg.png';
-import reactKitCliBgImage from '../assets/react-kit-cli.png';
-import minuBgImage from '../assets/minu.png';
-import moonrabbitBgImage from '../assets/moonrabbit.png';
-import muuviBgImage from '../assets/muuvi.png';
-import valuediBgImage from '../assets/valuedi.png';
+import {
+  mixmixBgImage,
+  dasomBgImage,
+  reactKitCliBgImage,
+  minuBgImage,
+  moonrabbitBgImage,
+  muuviBgImage,
+  valuediBgImage,
+} from '../constants/optimizedImages';
+import { profileImageOg } from '../constants/profileMedia';
 import Footer from '../components/Footer';
 
 const ProjectDetailPage = () => {
@@ -77,7 +80,7 @@ const ProjectDetailPage = () => {
       2: moonrabbitBgImage.startsWith('http') ? moonrabbitBgImage : `${siteUrl}${moonrabbitBgImage}`,
       3: muuviBgImage.startsWith('http') ? muuviBgImage : `${siteUrl}${muuviBgImage}`,
     };
-    return imageMap[project.id] || `${siteUrl}/src/assets/profile.png`;
+    return imageMap[project.id] || `${siteUrl}${profileImageOg}`;
   };
 
   const siteUrl = window.location.origin;

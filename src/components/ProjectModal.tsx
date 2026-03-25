@@ -1,12 +1,25 @@
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import { ProjectDetail } from '../constants/data';
-import mixmixBgImage from '../assets/mixmix.png';
-import dasomBgImage from '../assets/dasom-bg.png';
-import reactKitCliBgImage from '../assets/react-kit-cli.png';
-import minuBgImage from '../assets/minu.png';
-import moonrabbitBgImage from '../assets/moonrabbit.png';
-import muuviBgImage from '../assets/muuvi.png';
+import {
+  mixmixBgImage,
+  dasomBgImage,
+  reactKitCliBgImage,
+  minuBgImage,
+  moonrabbitBgImage,
+  muuviBgImage,
+  valuediBgImage,
+} from '../constants/projectThumbnails';
+
+const MODAL_THUMB: Partial<Record<number, string>> = {
+  1: dasomBgImage,
+  2: moonrabbitBgImage,
+  3: muuviBgImage,
+  4: minuBgImage,
+  5: mixmixBgImage,
+  6: reactKitCliBgImage,
+  7: valuediBgImage,
+};
 
 interface ProjectModalProps {
   isOpen: boolean;
@@ -114,23 +127,18 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
         {/* 상단 헤더 - 배경 이미지 영역 */}
         <div className="relative z-10 border-b border-zinc-800 flex-shrink-0 overflow-hidden">
           {/* 배경 이미지 */}
-          {project.id === 5 ? (
-            // MixMix 프로젝트
+          {project.id != null && MODAL_THUMB[project.id] ? (
             <>
-              <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-                style={{ backgroundImage: `url(${mixmixBgImage})` }}
+              <img
+                src={MODAL_THUMB[project.id]}
+                alt=""
+                width={560}
+                height={420}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover opacity-30"
               />
-              <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/95 to-zinc-900" />
-            </>
-          ) : project.id === 3 ? (
-            // Muuvi 프로젝트
-            <>
-              <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
-                style={{ backgroundImage: `url(${muuviBgImage})` }}
-              />
-              <div className="absolute inset-0 bg-gradient-to-b from-zinc-900/95 to-zinc-900" />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-zinc-900/95 to-zinc-900" />
             </>
           ) : (
             <div className="absolute inset-0 bg-zinc-900/95 backdrop-blur-sm" />
@@ -143,7 +151,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
               <button
                 onClick={onClose}
                 className="text-zinc-400 hover:text-white transition-colors text-3xl font-light leading-none"
-                aria-label="Close modal"
+                aria-label="모달 닫기"
               >
                 &times;
               </button>
@@ -165,65 +173,23 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
         >
           {/* 배경 이미지/색상 영역 */}
           <div className="relative w-full h-64 md:h-80 lg:h-96 overflow-hidden">
-            {project.id === 5 ? (
-              // MixMix 프로젝트 - 배경 이미지
+            {project.id != null && MODAL_THUMB[project.id] ? (
               <>
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${mixmixBgImage})` }}
+                <img
+                  src={MODAL_THUMB[project.id]}
+                  alt=""
+                  width={560}
+                  height={420}
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 h-full w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
-              </>
-            ) : project.id === 1 ? (
-              // 다솜 프로젝트 - 배경 이미지
-              <>
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${dasomBgImage})` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
-              </>
-            ) : project.id === 6 ? (
-              // react-kit-cli 프로젝트 - 배경 이미지
-              <>
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${reactKitCliBgImage})` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
-              </>
-            ) : project.id === 4 ? (
-              // minu 프로젝트 - 배경 이미지
-              <>
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${minuBgImage})` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
-              </>
-            ) : project.id === 2 ? (
-              // 달토끼 프로젝트 - 배경 이미지
-              <>
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${moonrabbitBgImage})` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
-              </>
-            ) : project.id === 3 ? (
-              // Muuvi 프로젝트 - 배경 이미지
-              <>
-                <div
-                  className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                  style={{ backgroundImage: `url(${muuviBgImage})` }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
               </>
             ) : (
-              // 다른 프로젝트 - 색상 배경
               <>
                 <div className={`absolute inset-0 ${project.color || 'bg-zinc-800'}`} />
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-zinc-900/50 to-zinc-900" />
               </>
             )}
           </div>

@@ -4,10 +4,11 @@ import SkillsSection from '../components/SkillsSection';
 import ProjectSection from '../components/ProjectSection';
 import Footer from '../components/Footer';
 import { PROFILE } from '../constants/data';
+import { profileImageOg } from '../constants/profileMedia';
 
 const Home = () => {
   const siteUrl = window.location.origin;
-  const ogImage = `${siteUrl}/src/assets/profile.png`;
+  const ogImage = `${siteUrl}${profileImageOg}`;
   const description = PROFILE.bio[0] || '프론트엔드 개발자 최도현의 포트폴리오입니다.';
 
   return (

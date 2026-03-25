@@ -1,0 +1,7 @@
+/* 동적 import로 초기 렌더 이후 로드. Galmuri만 포함 — Pretendard(2MB+)는 시스템 폰트로 대체해 LCP를 줄입니다. */
+@font-face {
+  font-family: 'Galmuri11';
+  src: url('./assets/fonts/Galmuri11.woff2') format('woff2');
+  font-weight: normal;
+  font-display: swap;
+}

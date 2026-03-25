@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { PROFILE, HISTORY } from '../constants/data';
-import profileImage from '../assets/profile.png';
+import { profileImage } from '../constants/profileMedia';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -83,13 +83,17 @@ const IntroSection = () => {
           <img
             ref={profileImageRef}
             src={profileImage}
-            alt="Profile"
-            className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full object-cover border-2 border-violet-400/50 shadow-lg hover:border-violet-400 transition-colors flex-shrink-0"
+            alt="최도현 프로필 사진"
+            width={112}
+            height={112}
+            decoding="async"
+            fetchPriority="high"
+            className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full object-cover border-2 border-violet-300/70 shadow-lg hover:border-violet-300 transition-colors flex-shrink-0"
           />
 
           {/* 타이틀 */}
           <h1 ref={titleRef} className="font-galmuri font-black text-3xl md:text-5xl lg:text-6xl">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-blue-500">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-200 to-sky-400">
               FRONTEND DEV
             </span>
           </h1>
@@ -101,10 +105,10 @@ const IntroSection = () => {
           <div ref={addToRefs} className="space-y-6 md:space-y-8">
             {/* About Me */}
             <div className="space-y-4">
-              <h2 className="text-xl md:text-2xl font-galmuri font-bold text-violet-400 border-b border-gray-700 pb-1.5">
+              <h2 className="text-xl md:text-2xl font-galmuri font-bold text-violet-300 border-b border-zinc-600 pb-1.5">
                 ABOUT ME
               </h2>
-              <div className="space-y-2.5 text-sm md:text-base text-gray-300 leading-relaxed">
+              <div className="space-y-2.5 text-sm md:text-base text-zinc-200 leading-relaxed">
                 {PROFILE.bio.map((text, index) => (
                   <p key={index}>{text}</p>
                 ))}
@@ -114,15 +118,17 @@ const IntroSection = () => {
             {/* Education */}
             {HISTORY.find((group) => group.category === 'Education') && (
               <div className="space-y-3">
-                <h3 className="text-lg md:text-xl font-galmuri font-bold border-b border-gray-700 pb-1.5">Education</h3>
+                <h3 className="text-lg md:text-xl font-galmuri font-bold text-zinc-100 border-b border-zinc-600 pb-1.5">
+                  Education
+                </h3>
                 <ul className="space-y-2">
                   {HISTORY.find((group) => group.category === 'Education')?.items.map((item, idx) => (
                     <li
                       key={idx}
                       className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-3 group"
                     >
-                      <span className="text-gray-400 font-mono text-xs md:text-sm whitespace-nowrap">{item.year}</span>
-                      <span className="text-sm md:text-base font-medium group-hover:text-violet-400 transition-colors flex-1">
+                      <span className="text-zinc-400 font-mono text-xs md:text-sm whitespace-nowrap">{item.year}</span>
+                      <span className="text-sm md:text-base font-medium text-zinc-200 group-hover:text-violet-300 transition-colors flex-1">
                         {item.title}
                       </span>
                     </li>
@@ -136,7 +142,7 @@ const IntroSection = () => {
           <div ref={addToRefs} className="space-y-5 md:space-y-6">
             {HISTORY.filter((group) => group.category !== 'Education').map((group) => (
               <div key={group.category} className="space-y-3">
-                <h3 className="text-lg md:text-xl font-galmuri font-bold border-b border-gray-700 pb-1.5">
+                <h3 className="text-lg md:text-xl font-galmuri font-bold text-zinc-100 border-b border-zinc-600 pb-1.5">
                   {group.category}
                 </h3>
                 <ul className="space-y-2">
@@ -145,8 +151,8 @@ const IntroSection = () => {
                       key={idx}
                       className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-1 sm:gap-3 group"
                     >
-                      <span className="text-gray-400 font-mono text-xs md:text-sm whitespace-nowrap">{item.year}</span>
-                      <span className="text-sm md:text-base font-medium group-hover:text-violet-400 transition-colors flex-1">
+                      <span className="text-zinc-400 font-mono text-xs md:text-sm whitespace-nowrap">{item.year}</span>
+                      <span className="text-sm md:text-base font-medium text-zinc-200 group-hover:text-violet-300 transition-colors flex-1">
                         {item.title}
                       </span>
                     </li>
@@ -159,7 +165,7 @@ const IntroSection = () => {
 
         {/* 하단: 스크롤 안내 */}
         <div ref={addToRefs} className="mt-8 md:mt-10 text-center">
-          <p className="text-gray-400 font-galmuri text-xs md:text-sm animate-bounce">↓ SCROLL TO EXPLORE</p>
+          <p className="text-zinc-400 font-galmuri text-xs md:text-sm animate-bounce">↓ SCROLL TO EXPLORE</p>
         </div>
       </div>
     </section>

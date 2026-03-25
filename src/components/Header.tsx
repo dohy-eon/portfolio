@@ -65,8 +65,12 @@ const Header = () => {
 
           {/* 모바일 햄버거 버튼 */}
           <button
+            type="button"
             className="md:hidden z-50 flex flex-col justify-center items-end gap-1.5 group"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             <motion.div
               animate={isMobileMenuOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
@@ -94,7 +98,7 @@ const Header = () => {
             transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }} // 커스텀 베지어 곡선
             className="fixed inset-0 z-[90] bg-black flex flex-col items-center justify-center"
           >
-            <nav className="flex flex-col gap-8 text-center">
+            <nav id="mobile-navigation" className="flex flex-col gap-8 text-center" aria-label="모바일 메인 메뉴">
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.name}

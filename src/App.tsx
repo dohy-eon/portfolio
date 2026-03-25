@@ -1,22 +1,28 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { HelmetProvider } from 'react-helmet-async';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 
-// Pages
 import Home from './pages/Home';
-import Works from './pages/Works';
-import About from './pages/About';
-import ProjectDetail from './pages/ProjectDetail';
-import Skills from './pages/Skills';
+
+const Works = lazy(() => import('./pages/Works'));
+const About = lazy(() => import('./pages/About'));
+const ProjectDetail = lazy(() => import('./pages/ProjectDetail'));
+const Skills = lazy(() => import('./pages/Skills'));
 
 // Components
 import Cursor from './components/Cursor';
 import Header from './components/Header';
 import PageTransition from './components/PageTransition';
 import ScrollToTopBottom from './components/ScrollToTopBottom';
+
+const RouteFallback = () => (
+  <div className="min-h-screen bg-zinc-900" role="status" aria-live="polite">
+    <span className="sr-only">페이지 로드 중</span>
+  </div>
+);
 
 // 라우트 변경을 감지하고 애니메이션을 적용하는 래퍼 컴포넌트
 const AnimatedRoutes = () => {
@@ -25,6 +31,7 @@ const AnimatedRoutes = () => {
   return (
     // mode="sync": 이전 페이지와 다음 페이지가 동시에 애니메이션되어 더 빠른 전환
     <AnimatePresence mode="sync">
+      <Suspense fallback={<RouteFallback />}>
       <Routes location={location} key={location.pathname}>
         <Route
           path="/"
@@ -67,17 +74,15 @@ const AnimatedRoutes = () => {
           }
         />
       </Routes>
+      </Suspense>
     </AnimatePresence>
   );
 };
 
 function App() {
   useEffect(() => {
-    // Lenis 스크롤 설정 (페이지 이동 시 스크롤 최상단 이동 처리는 라우터가 하거나 Lenis가 처리)
     const lenis = new Lenis();
-
-    // 전역에서 접근 가능하도록 window 객체에 저장
-    (window as any).lenis = lenis;
+    (window as unknown as { lenis: Lenis }).lenis = lenis;
 
     function raf(time: number) {
       lenis.raf(time);
@@ -88,7 +93,7 @@ function App() {
 
     return () => {
       lenis.destroy();
-      delete (window as any).lenis;
+      delete (window as unknown as { lenis?: Lenis }).lenis;
     };
   }, []);
 

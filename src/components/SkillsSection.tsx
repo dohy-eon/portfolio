@@ -24,7 +24,7 @@ interface SkillCardProps {
 const SkillCard = ({ skill, onRefAdd }: SkillCardProps) => {
   const cardClasses = `border-violet-400/30 bg-gradient-to-br from-violet-400/10 via-violet-400/5 to-transparent hover:border-violet-400/50 hover:from-violet-400/15 hover:via-violet-400/10 hover:to-transparent hover:shadow-violet-400/20 shadow-violet-400/10`;
 
-  const levelBadgeClasses = 'text-violet-300 bg-violet-400/20 border border-violet-400/30';
+  const levelBadgeClasses = 'text-violet-200 bg-violet-500/25 border border-violet-400/40';
 
   return (
     <div

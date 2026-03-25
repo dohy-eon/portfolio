@@ -4,10 +4,11 @@ import { motion } from 'framer-motion';
 import ProjectCard from '../components/ProjectCard';
 import { PROJECTS } from '../constants/data';
 import Footer from '../components/Footer';
+import { profileImageOg } from '../constants/profileMedia';
 
 const Works = () => {
   const siteUrl = window.location.origin;
-  const ogImage = `${siteUrl}/src/assets/profile.png`;
+  const ogImage = `${siteUrl}${profileImageOg}`;
   const description = '실제 문제를 기술과 UX로 풀어낸 프로젝트들을 모았습니다.';
   const containerRef = useRef<HTMLDivElement>(null);
 

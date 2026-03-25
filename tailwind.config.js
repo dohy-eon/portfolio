@@ -7,11 +7,27 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        // 메인 화면 기본 폰트 (PretendardVariable)
-        sans: ['PretendardVariable', 'system-ui', 'sans-serif'],
-        pretendard: ['PretendardVariable', 'system-ui', 'sans-serif'],
-        // 헤더 네비게이션 전용 폰트 (Galmuri11)
-        galmuri: ['Galmuri11', 'sans-serif'],
+        sans: [
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'Apple SD Gothic Neo',
+          'Noto Sans KR',
+          'sans-serif',
+        ],
+        pretendard: [
+          'system-ui',
+          '-apple-system',
+          'BlinkMacSystemFont',
+          'Segoe UI',
+          'Roboto',
+          'Apple SD Gothic Neo',
+          'Noto Sans KR',
+          'sans-serif',
+        ],
+        galmuri: ['Galmuri11', 'system-ui', 'sans-serif'],
       },
       colors: {
         // 필요시 커스텀 컬러 추가

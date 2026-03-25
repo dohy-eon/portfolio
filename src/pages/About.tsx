@@ -3,10 +3,11 @@ import IntroSection from '../components/IntroSection';
 import SkillsSection from '../components/SkillsSection';
 import Footer from '../components/Footer';
 import { PROFILE } from '../constants/data';
+import { profileImageOg } from '../constants/profileMedia';
 
 const About = () => {
   const siteUrl = window.location.origin;
-  const ogImage = `${siteUrl}/src/assets/profile.png`;
+  const ogImage = `${siteUrl}${profileImageOg}`;
   const description = PROFILE.bio.join(' ');
 
   return (
